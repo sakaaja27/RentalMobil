@@ -1,0 +1,9 @@
+project.rental.Register$2
+project.rental.Register$3
+project.rental.Register
+project.rental.Register$1
+project.rental.Register$6
+project.rental.Register$7
+project.rental.Register$4
+project.rental.Register$5
+project.rental.Register$8
