@@ -18,7 +18,7 @@ public class DB {
     public static Connection getConnection() throws SQLException{
         if (DB_koneksi == null) {
             
-            DB_koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/rentalmobil","root","");
+            DB_koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/rental","root","");
         }
         return DB_koneksi;
     }
