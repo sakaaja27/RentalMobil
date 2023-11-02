@@ -82,9 +82,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel8" min="-2" pref="148" max="-2" attributes="0"/>
                                   <Component id="jLabel10" min="-2" pref="181" max="-2" attributes="0"/>
@@ -92,7 +92,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel11" alignment="0" min="-2" pref="181" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -314,7 +314,7 @@
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel_icon_pengembalian" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="jLabel_sewa" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="jLabel_icon_sewa_menu" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="jLabel_icon_data_mobil" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="jLabel_icon_data_sopir" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="jLabel_icon_dashboard" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
@@ -322,7 +322,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel_sewa" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -341,8 +341,8 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="jLabel_sewa" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="jLabel_sewa" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="jLabel_icon_sewa_menu" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -369,7 +369,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel2">
+                <Component class="javax.swing.JLabel" name="jLabel_sewa">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Trebuchet MS" size="20" style="1"/>
@@ -380,7 +380,7 @@
                     <Property name="text" type="java.lang.String" value="Penyewaan"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel2MouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_sewaMouseClicked"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
@@ -393,6 +393,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Data Mobil"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
@@ -404,6 +407,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Pengembalian"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel4MouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
@@ -415,6 +421,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Data Sopir"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel5MouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
@@ -426,6 +435,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Dashboard"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel6MouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel_icon_pengembalian">
                   <Properties>
@@ -435,7 +447,7 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel_sewa">
+                <Component class="javax.swing.JLabel" name="jLabel_icon_sewa_menu">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>

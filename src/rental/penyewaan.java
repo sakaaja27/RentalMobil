@@ -32,7 +32,7 @@ public class penyewaan extends javax.swing.JFrame {
         
         //menu item
         displayImage(jLabel_icon_dashboard.getWidth(), jLabel_icon_dashboard.getHeight(),"../images/icon_menu/icon_dashboard.png",jLabel_icon_dashboard);
-        displayImage(jLabel_sewa.getWidth(), jLabel_sewa.getHeight(),"../images/icon_menu/sewa.png",jLabel_sewa);
+        displayImage(jLabel_icon_sewa_menu.getWidth(), jLabel_icon_sewa_menu.getHeight(),"../images/icon_menu/sewa.png",jLabel_icon_sewa_menu);
         displayImage(jLabel_icon_pengembalian.getWidth(), jLabel_icon_pengembalian.getHeight(),"../images/icon_menu/pengembalian.png",jLabel_icon_pengembalian);
         displayImage(jLabel_icon_data_mobil.getWidth(), jLabel_icon_data_mobil.getHeight(),"../images/icon_menu/mobil.png",jLabel_icon_data_mobil);
         displayImage(jLabel_icon_data_sopir.getWidth(), jLabel_icon_data_sopir.getHeight(),"../images/icon_menu/sopir.png",jLabel_icon_data_sopir);
@@ -71,13 +71,13 @@ public class penyewaan extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel_icon_sewa = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel_sewa = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel_icon_pengembalian = new javax.swing.JLabel();
-        jLabel_sewa = new javax.swing.JLabel();
+        jLabel_icon_sewa_menu = new javax.swing.JLabel();
         jLabel_icon_data_mobil = new javax.swing.JLabel();
         jLabel_icon_data_sopir = new javax.swing.JLabel();
         jLabel_icon_dashboard = new javax.swing.JLabel();
@@ -171,36 +171,56 @@ public class penyewaan extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(254, 254, 254));
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Penyewaan");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel_sewa.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel_sewa.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel_sewa.setText("Penyewaan");
+        jLabel_sewa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                jLabel_sewaMouseClicked(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Data Mobil");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Pengembalian");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Data Sopir");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Dashboard");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         jLabel_icon_pengembalian.setBackground(new java.awt.Color(255, 255, 255));
         jLabel_icon_pengembalian.setOpaque(true);
 
-        jLabel_sewa.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel_sewa.setOpaque(true);
+        jLabel_icon_sewa_menu.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel_icon_sewa_menu.setOpaque(true);
 
         jLabel_icon_data_mobil.setBackground(new java.awt.Color(255, 255, 255));
         jLabel_icon_data_mobil.setOpaque(true);
@@ -219,14 +239,14 @@ public class penyewaan extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel_icon_pengembalian, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_sewa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_icon_sewa_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_icon_data_mobil, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_icon_data_sopir, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_icon_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel_sewa)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3))
@@ -241,8 +261,8 @@ public class penyewaan extends javax.swing.JFrame {
                     .addComponent(jLabel_icon_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_sewa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_sewa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_icon_sewa_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -270,15 +290,15 @@ public class penyewaan extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                        .addGap(111, 111, 111)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -361,11 +381,31 @@ public class penyewaan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void jLabel_sewaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_sewaMouseClicked
         // TODO add your handling code here:
         penyewaan frm_sewa = new penyewaan();
         frm_sewa.setVisible(true);
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_jLabel_sewaMouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        dashboard frm_dsh = new dashboard();
+        frm_dsh.setVisible(true);
+        
+
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -408,7 +448,6 @@ public class penyewaan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -420,6 +459,7 @@ public class penyewaan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_icon_data_sopir;
     private javax.swing.JLabel jLabel_icon_pengembalian;
     private javax.swing.JLabel jLabel_icon_sewa;
+    private javax.swing.JLabel jLabel_icon_sewa_menu;
     private javax.swing.JLabel jLabel_sewa;
     private javax.swing.JLabel jLabelclose;
     private javax.swing.JPanel jPanel1;
