@@ -5,21 +5,24 @@
 package DB_koneksi;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.SQLException;
+import java.sql.DriverManager;
 
 /**
  *
- * @author sakab
+ * @author 
  */
 public class DB {
-    private  static Connection DB_koneksi;
-    
-    public static Connection getConnection() throws SQLException{
+
+    private static Connection DB_koneksi;
+
+    public static Connection getConnection() throws SQLException {
         if (DB_koneksi == null) {
-            
-            DB_koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/rental","root","");
+
+            DB_koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/autorental", "root", "");
         }
         return DB_koneksi;
     }
+
 }
