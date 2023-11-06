@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/media/Hidayah-Arif/Programmer/Project/Desktop%20App/RentalMobil/src/items/alert.java</file>
             <file>file:/media/Hidayah-Arif/Programmer/Project/Desktop%20App/RentalMobil/src/owner/dashboardOwner.java</file>
             <file>file:/media/Hidayah-Arif/Programmer/Project/Desktop%20App/RentalMobil/src/rental/ForgotPassword.java</file>
@@ -11,6 +12,13 @@
             <file>file:/media/Hidayah-Arif/Programmer/Project/Desktop%20App/RentalMobil/src/functions/logout.java</file>
             <file>file:/media/Hidayah-Arif/Programmer/Project/Desktop%20App/RentalMobil/src/rental/penyewaan.java</file>
             <file>file:/media/Hidayah-Arif/Programmer/Project/Desktop%20App/RentalMobil/src/rental/login.java</file>
+=======
+            <file>file:/D:/Kuliah/RentalMobil/RentalMobil/src/rental/DataMobil.java</file>
+            <file>file:/D:/Kuliah/RentalMobil/RentalMobil/src/rental/login.java</file>
+            <file>file:/D:/Kuliah/RentalMobil/RentalMobil/src/rental/penyewaan.java</file>
+            <file>file:/D:/Kuliah/RentalMobil/RentalMobil/src/images/bg_login.jpeg</file>
+            <file>file:/D:/Kuliah/RentalMobil/RentalMobil/src/rental/dashboard.java</file>
+>>>>>>> 8129d6f30c7302b4a73dd2dfaded4ac348ff1a71
         </group>
     </open-files>
 </project-private>

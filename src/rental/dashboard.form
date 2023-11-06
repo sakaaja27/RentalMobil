@@ -190,7 +190,11 @@
                                   <Component id="jLabel_Keluar" min="-2" pref="85" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+<<<<<<< HEAD
                           <EmptySpace max="32767" attributes="0"/>
+=======
+                          <EmptySpace pref="10" max="32767" attributes="0"/>
+>>>>>>> 8129d6f30c7302b4a73dd2dfaded4ac348ff1a71
                       </Group>
                   </Group>
                 </DimensionLayout>

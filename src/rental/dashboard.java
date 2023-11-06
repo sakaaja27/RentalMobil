@@ -804,7 +804,11 @@ public class dashboard extends javax.swing.JFrame {
 
     private void jLabel_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dashboardMouseClicked
         // TODO add your handling code here:
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> 8129d6f30c7302b4a73dd2dfaded4ac348ff1a71
     }//GEN-LAST:event_jLabel_dashboardMouseClicked
 
     private void jLabel_PengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PengembalianMouseClicked
@@ -813,6 +817,8 @@ public class dashboard extends javax.swing.JFrame {
 
     private void jLabel_dataMobilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataMobilMouseClicked
         // TODO add your handling code here:
+         DataMobil frm_DataMobil = new DataMobil();
+        frm_DataMobil.setVisible(true);
     }//GEN-LAST:event_jLabel_dataMobilMouseClicked
 
     private void jLabel_dataSopirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataSopirMouseClicked
