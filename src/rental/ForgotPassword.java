@@ -4,6 +4,11 @@
  */
 package rental;
 
+import DB_koneksi.DB;
+import items.alert;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JFrame;
 
 /**
@@ -17,9 +22,9 @@ public class ForgotPassword extends javax.swing.JFrame {
      */
     public ForgotPassword() {
         this.setResizable(false);
-          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-                this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                this.setUndecorated(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setUndecorated(true);
         initComponents();
         //ini agar posisi center waktu buka
         this.setLocationRelativeTo(null);
@@ -40,10 +45,10 @@ public class ForgotPassword extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel_username = new javax.swing.JLabel();
         jTextField_username = new javax.swing.JTextField();
-        jTextField_username1 = new javax.swing.JTextField();
+        jTextField_password = new javax.swing.JTextField();
         jLabel_username1 = new javax.swing.JLabel();
         jLabel_username2 = new javax.swing.JLabel();
-        jTextField_username2 = new javax.swing.JTextField();
+        jTextField_confirm_password = new javax.swing.JTextField();
         jButton_simpanPassword = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -56,45 +61,38 @@ public class ForgotPassword extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(204, 220, 228));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Reset Password");
 
         jLabel_username.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel_username.setForeground(new java.awt.Color(0, 0, 0));
         jLabel_username.setText("Masukkan Username :");
 
         jTextField_username.setBackground(new java.awt.Color(238, 218, 222));
         jTextField_username.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jTextField_username.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_usernameActionPerformed(evt);
             }
         });
 
-        jTextField_username1.setBackground(new java.awt.Color(238, 218, 222));
-        jTextField_username1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jTextField_username1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_username1.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_password.setBackground(new java.awt.Color(238, 218, 222));
+        jTextField_password.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jTextField_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_username1ActionPerformed(evt);
+                jTextField_passwordActionPerformed(evt);
             }
         });
 
         jLabel_username1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel_username1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel_username1.setText("Masukkan Password Baru :");
 
         jLabel_username2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel_username2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel_username2.setText("Masukkan Password Baru :");
+        jLabel_username2.setText("Konfirmasi Password :");
 
-        jTextField_username2.setBackground(new java.awt.Color(238, 218, 222));
-        jTextField_username2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jTextField_username2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_username2.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_confirm_password.setBackground(new java.awt.Color(238, 218, 222));
+        jTextField_confirm_password.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jTextField_confirm_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_username2ActionPerformed(evt);
+                jTextField_confirm_passwordActionPerformed(evt);
             }
         });
 
@@ -119,9 +117,6 @@ public class ForgotPassword extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(83, 83, 83)
-                            .addComponent(jTextField_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(234, 234, 234)
@@ -130,8 +125,10 @@ public class ForgotPassword extends javax.swing.JFrame {
                                 .addGap(317, 317, 317)
                                 .addComponent(jTextField_username, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(83, 83, 83)
-                            .addComponent(jTextField_username2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addContainerGap()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextField_password, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField_confirm_password, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(196, 196, 196)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,18 +151,17 @@ public class ForgotPassword extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_username1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField_password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel_username2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField_username2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField_confirm_password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton_simpanPassword)
                 .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("X");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -227,19 +223,42 @@ public class ForgotPassword extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_usernameActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextField_usernameActionPerformed
 
-    private void jTextField_username1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_username1ActionPerformed
+    private void jTextField_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_username1ActionPerformed
+    }//GEN-LAST:event_jTextField_passwordActionPerformed
 
-    private void jTextField_username2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_username2ActionPerformed
+    private void jTextField_confirm_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_confirm_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_username2ActionPerformed
+    }//GEN-LAST:event_jTextField_confirm_passwordActionPerformed
 
     private void jButton_simpanPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_simpanPasswordActionPerformed
-       
+            alert alert = new alert();
+        String username, new_password, confirm_password;
+        username = jTextField_username.getText();
+        new_password = jTextField_password.getText();
+        confirm_password = jTextField_confirm_password.getText();
+        final String UPDATE_PASSWORD = "UPDATE user SET password = `" + new_password + "` WHERE username = `" + username + "`";
+        if (!new_password.equals(confirm_password)) {
+        
+            alert.run("Password tidak sama !");
+        } else {
+            try {
+                System.out.println(UPDATE_PASSWORD);
+                Connection conn = DB.getConnection();
+                Statement stmt = conn.createStatement();
+                int result = stmt.executeUpdate("UPDATE user SET password = \"" + new_password + "\" WHERE username = \"" + username + "\"");
+                System.out.println(result);
+                login login = new login();
+                login.setVisible(true);
+                alert.run("Reset password berhasil !");
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
     }//GEN-LAST:event_jButton_simpanPasswordActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -293,8 +312,8 @@ public class ForgotPassword extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField_confirm_password;
+    private javax.swing.JTextField jTextField_password;
     private javax.swing.JTextField jTextField_username;
-    private javax.swing.JTextField jTextField_username1;
-    private javax.swing.JTextField jTextField_username2;
     // End of variables declaration//GEN-END:variables
 }

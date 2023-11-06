@@ -1,5 +1,6 @@
 package rental;
 
+import functions.logout;
 import java.awt.Color;
 import static java.awt.Color.red;
 import java.awt.Image;
@@ -15,7 +16,6 @@ import javax.swing.border.Border;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author sakab
@@ -25,48 +25,41 @@ public class dashboard extends javax.swing.JFrame {
     /**
      * Creates new form dashboard
      */
-    
     //      border
-        Border red_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red);
-        Border empty_border = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(254,254,254));
-    
+    Border red_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red);
+    Border empty_border = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(254, 254, 254));
+
     public dashboard() {
         this.setResizable(false);
-          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-                this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                this.setUndecorated(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        
 
-        
-    
-       
-        
 //        icon atas
-        displayImage(jLabel_mobil_icon.getWidth()-60, jLabel_mobil_icon.getHeight()-30,"../images/mobil.png",jLabel_mobil_icon);
-        displayImage(jLabel_cust_icon.getWidth()-80, jLabel_cust_icon.getHeight()-30,"../images/persons.png",jLabel_cust_icon);
-        displayImage(jLabel_icon_admin.getWidth(), jLabel_icon_admin.getHeight(),"../images/admin.png",jLabel_icon_admin);
+        displayImage(jLabel_mobil_icon.getWidth() - 60, jLabel_mobil_icon.getHeight() - 30, "../images/mobil.png", jLabel_mobil_icon);
+        displayImage(jLabel_cust_icon.getWidth() - 80, jLabel_cust_icon.getHeight() - 30, "../images/persons.png", jLabel_cust_icon);
+        displayImage(jLabel_icon_admin.getWidth(), jLabel_icon_admin.getHeight(), "../images/admin.png", jLabel_icon_admin);
 //        menu item
-        displayImage(jLabel_icon_dashboard.getWidth(), jLabel_icon_dashboard.getHeight(),"../images/icon_menu/icon_dashboard.png",jLabel_icon_dashboard);
-        displayImage(jLabel_icon_sewa.getWidth(), jLabel_icon_sewa.getHeight(),"../images/icon_menu/sewa.png",jLabel_icon_sewa);
-        displayImage(jLabel_icon_pengembalian.getWidth(), jLabel_icon_pengembalian.getHeight(),"../images/icon_menu/pengembalian.png",jLabel_icon_pengembalian);
-        displayImage(jLabel_icon_data_mobil.getWidth(), jLabel_icon_data_mobil.getHeight(),"../images/icon_menu/mobil.png",jLabel_icon_data_mobil);
-        displayImage(jLabel_icon_data_sopir.getWidth(), jLabel_icon_data_sopir.getHeight(),"../images/icon_menu/sopir.png",jLabel_icon_data_sopir);
-        
+        displayImage(jLabel_icon_dashboard.getWidth(), jLabel_icon_dashboard.getHeight(), "../images/icon_menu/icon_dashboard.png", jLabel_icon_dashboard);
+        displayImage(jLabel_icon_sewa.getWidth(), jLabel_icon_sewa.getHeight(), "../images/icon_menu/sewa.png", jLabel_icon_sewa);
+        displayImage(jLabel_icon_pengembalian.getWidth(), jLabel_icon_pengembalian.getHeight(), "../images/icon_menu/pengembalian.png", jLabel_icon_pengembalian);
+        displayImage(jLabel_icon_data_mobil.getWidth(), jLabel_icon_data_mobil.getHeight(), "../images/icon_menu/mobil.png", jLabel_icon_data_mobil);
+        displayImage(jLabel_icon_data_sopir.getWidth(), jLabel_icon_data_sopir.getHeight(), "../images/icon_menu/sopir.png", jLabel_icon_data_sopir);
+
 //        gmabar mobil 
-        displayImage(jLabel_gmbr_mobil.getWidth(), jLabel_gmbr_mobil.getHeight(),"../images/avanza.png",jLabel_gmbr_mobil);
-        displayImage(jLabel_gmbr_mobil1.getWidth(), jLabel_gmbr_mobil1.getHeight(),"../images/avanza.png",jLabel_gmbr_mobil1);
-        displayImage(jLabel_gmbr_mobil2.getWidth(), jLabel_gmbr_mobil2.getHeight(),"../images/avanza.png",jLabel_gmbr_mobil2);
-        
-        
+        displayImage(jLabel_gmbr_mobil.getWidth(), jLabel_gmbr_mobil.getHeight(), "../images/avanza.png", jLabel_gmbr_mobil);
+        displayImage(jLabel_gmbr_mobil1.getWidth(), jLabel_gmbr_mobil1.getHeight(), "../images/avanza.png", jLabel_gmbr_mobil1);
+        displayImage(jLabel_gmbr_mobil2.getWidth(), jLabel_gmbr_mobil2.getHeight(), "../images/avanza.png", jLabel_gmbr_mobil2);
+
 //        set border di menu item
         jLabel_dashboard.setBorder(empty_border);
         jLabel_Sewa.setBorder(empty_border);
         jLabel_Pengembalian.setBorder(empty_border);
         jLabel_dataMobil.setBorder(empty_border);
         jLabel_dataSopir.setBorder(empty_border);
-        
+
     }
 
     /**
@@ -74,26 +67,24 @@ public class dashboard extends javax.swing.JFrame {
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
-    
-    public void NamaMobil(){
+    public void NamaMobil() {
 //        String username = jTextField_username.getText();
 //        String password = String.valueOf(jPasswordField1.getPassword());
-        
+
         PreparedStatement ps;
         ResultSet rs;
         String query = "SELECT * FROM `mobil` ";
-        
-        
+
     }
-    
-    public void displayImage(int width,int height,String image_path,JLabel label){
+
+    public void displayImage(int width, int height, String image_path, JLabel label) {
         ImageIcon imageIcon = new ImageIcon(getClass().getResource(image_path));
-        Image image = imageIcon.getImage().getScaledInstance(width,height,Image.SCALE_SMOOTH);
-        
+        Image image = imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
         label.setIcon(new ImageIcon(image));
-        
-        
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -805,12 +796,15 @@ public class dashboard extends javax.swing.JFrame {
     private void jLabel_SewaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SewaMouseClicked
         // TODO add your handling code here:
         penyewaan frm_sewa = new penyewaan();
+         this.setVisible(false);
         frm_sewa.setVisible(true);
+       
+
     }//GEN-LAST:event_jLabel_SewaMouseClicked
 
     private void jLabel_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dashboardMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jLabel_dashboardMouseClicked
 
     private void jLabel_PengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PengembalianMouseClicked
@@ -853,7 +847,7 @@ public class dashboard extends javax.swing.JFrame {
     private void jLabel_PengembalianMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PengembalianMouseExited
         // TODO add your handling code here:
         jLabel_Pengembalian.setBorder(empty_border);
-        
+
     }//GEN-LAST:event_jLabel_PengembalianMouseExited
 
     private void jLabel_dataMobilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataMobilMouseEntered
@@ -863,21 +857,23 @@ public class dashboard extends javax.swing.JFrame {
 
     private void jLabel_dataMobilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataMobilMouseExited
         // TODO add your handling code here:
-         jLabel_dataMobil.setBorder(empty_border);
+        jLabel_dataMobil.setBorder(empty_border);
     }//GEN-LAST:event_jLabel_dataMobilMouseExited
 
     private void jLabel_dataSopirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataSopirMouseEntered
         // TODO add your handling code here:
-         jLabel_dataSopir.setBorder(red_border);
+        jLabel_dataSopir.setBorder(red_border);
     }//GEN-LAST:event_jLabel_dataSopirMouseEntered
 
     private void jLabel_dataSopirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataSopirMouseExited
         // TODO add your handling code here:
-         jLabel_dataSopir.setBorder(empty_border);
+        jLabel_dataSopir.setBorder(empty_border);
     }//GEN-LAST:event_jLabel_dataSopirMouseExited
 
     private void jLabel_KeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_KeluarMouseClicked
         // TODO add your handling code here:
+        login login = new login();
+        logout.run(this, login);
     }//GEN-LAST:event_jLabel_KeluarMouseClicked
 
     private void jLabel_KeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_KeluarMouseEntered
