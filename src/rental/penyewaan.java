@@ -529,6 +529,10 @@ public class penyewaan extends javax.swing.JFrame {
     private void jLabel_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dashboardMouseClicked
         // TODO add your handling code here:
         dashboard frm_dsh = new dashboard();
+<<<<<<< HEAD
+=======
+        this.setVisible(false);
+>>>>>>> bef9b5efb158547d310432e90dd59ad3e97cb7e0
         frm_dsh.setVisible(true);
     }//GEN-LAST:event_jLabel_dashboardMouseClicked
 

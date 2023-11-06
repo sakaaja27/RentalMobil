@@ -190,7 +190,11 @@
                                   <Component id="jLabel_Keluar" min="-2" pref="85" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+<<<<<<< HEAD
+                          <EmptySpace max="32767" attributes="0"/>
+=======
                           <EmptySpace pref="10" max="32767" attributes="0"/>
+>>>>>>> 8129d6f30c7302b4a73dd2dfaded4ac348ff1a71
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -246,8 +250,8 @@
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_SewaMouseClicked"/>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_SewaMouseEntered"/>
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_SewaMouseExited"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_SewaMouseEntered"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel_dataMobil">
@@ -389,8 +393,8 @@
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_KeluarMouseClicked"/>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_KeluarMouseEntered"/>
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_KeluarMouseExited"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_KeluarMouseEntered"/>
                   </Events>
                 </Component>
               </SubComponents>
