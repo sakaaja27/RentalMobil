@@ -11,6 +11,10 @@ import javax.swing.JOptionPane;
 import DB_koneksi.DB;
 import java.sql.Statement;
 import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+
 
 
 
@@ -21,46 +25,16 @@ import java.sql.Connection;
  */
 public class addDataMobil extends javax.swing.JFrame {
 
+    ArrayList<String> nm_pemilik, kd_pemilik;
     /**
      * Creates new form addDataMobil
      */
     public addDataMobil() {
         initComponents();
-        datatable();
+        getPemilik();
     }
 
-    public void datatable() {
-        DefaultTableModel tbl = new DefaultTableModel();
-        tbl.addColumn("Kode Mobil");
-        tbl.addColumn("Nama Mobil");
-        tbl.addColumn("Nopol");
-        tbl.addColumn("Pemilik");
-        tbl.addColumn("Tahun");
-        tbl.addColumn("Harga");
-        tbl.addColumn("Gambar");
-        tbl.addColumn("Status");
-        table.setModel(tbl);
-        try {
-          
-             Statement statement = (Statement) DB.getConnection().createStatement();
-            ResultSet res = statement.executeQuery("select * from mobil");
-            while (res.next()) {
-                tbl.addRow(new Object[]{
-                    res.getString("kdMobil"),
-                    res.getString("nama_mobil"),
-                    res.getString("nopol"),
-                     res.getString("id_pemilik"),
-                    res.getString("tahun_produksi"),
-                    res.getString("harga_perhari"),
-                     res.getString("gambar"),
-                    res.getString("status")
-                });
-                table.setModel(tbl);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "");
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,15 +66,15 @@ public class addDataMobil extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         saveMobil = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        pemilik = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         gambarMobil = new javax.swing.JTextField();
+        jComboBox_pemilik = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("kdMobil");
+        jLabel1.setText("Kode Mobil");
 
         jLabel2.setText("Nama Mobil");
 
@@ -191,12 +165,6 @@ public class addDataMobil extends javax.swing.JFrame {
 
         jLabel7.setText("Pemilik");
 
-        pemilik.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pemilikActionPerformed(evt);
-            }
-        });
-
         jLabel8.setText("Gambar");
 
         gambarMobil.addActionListener(new java.awt.event.ActionListener() {
@@ -223,9 +191,9 @@ public class addDataMobil extends javax.swing.JFrame {
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(saveMobil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(pemilik, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(gambarMobil, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jComboBox_pemilik, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -251,9 +219,12 @@ public class addDataMobil extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(125, 125, 125)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(125, 125, 125))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(106, 106, 106)))))
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addComponent(kodeMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,7 +236,7 @@ public class addDataMobil extends javax.swing.JFrame {
                                     .addComponent(tahun, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(harga, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(statusMobil, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pemilik, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jComboBox_pemilik, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
@@ -285,7 +256,7 @@ public class addDataMobil extends javax.swing.JFrame {
                         .addGap(84, 84, 84)))
                 .addGap(53, 53, 53))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(0, 17, Short.MAX_VALUE)
+                .addGap(0, 21, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -307,7 +278,7 @@ public class addDataMobil extends javax.swing.JFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(pemilik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_pemilik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveMobil)
@@ -327,7 +298,7 @@ public class addDataMobil extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(statusMobil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editMobil))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -354,7 +325,7 @@ public class addDataMobil extends javax.swing.JFrame {
         kodeMobil.setText("");
        namaMobil.setText("");
         nopolMobil.setText("");
-        pemilik.setText("");
+//        pemilik.setText("");
         tahun.setText("");
         harga.setText("");
         gambarMobil.setText("");
@@ -396,12 +367,28 @@ public class addDataMobil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_hapusMobilActionPerformed
 
+    void getPemilik(){
+        nm_pemilik = new ArrayList<String>();
+        kd_pemilik = new ArrayList<String>();
+        try{
+            Statement state = DB.getConnection().createStatement();
+            ResultSet res = state.executeQuery("select id_pemilik, nama_pemilik from pemilik_mobil");
+            while(res.next()){
+                jComboBox_pemilik.addItem(res.getString("nama_pemilik"));
+                kd_pemilik.add(res.getString("id_pemilik"));
+            }
+
+        }catch(Exception x){
+            JOptionPane.showMessageDialog(rootPane, x);
+        
+        }   
+    }
     private void saveMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMobilActionPerformed
         // TODO add your handling code here:
-         String kdMobil = kodeMobil.getText();
+         String id_mobil = kodeMobil.getText();
         String nama_mobil = namaMobil.getText();
         String nopol = nopolMobil.getText();
-        String id_pemilik = pemilik.getText();
+        String id_pemilik = kd_pemilik.get(jComboBox_pemilik.getSelectedIndex());
 String tahun_produksi = tahun.getText();
 String harga_perhari = harga.getText();
 String gambar = gambarMobil.getText();
@@ -410,7 +397,7 @@ String status = statusMobil.getText();
         try {
             
             Statement statement = (Statement) DB.getConnection().createStatement();
-            statement.executeUpdate("insert into mobil VALUES('" + kdMobil + "','" + nama_mobil + "', '" + nopol + "', '" + id_pemilik + "','" + tahun_produksi + "','" + harga_perhari + "', '" + gambar + "','" + status + "');");
+            statement.executeUpdate("insert into mobil VALUES('" + id_mobil + "','" + nama_mobil + "', '" + nopol + "', '" +id_pemilik + "','" + tahun_produksi + "','" + harga_perhari + "', '" + gambar + "','" + status + "');");
             statement.close();
             JOptionPane.showMessageDialog(null, "data berhasil di SIMPAN");
 
@@ -418,17 +405,13 @@ String status = statusMobil.getText();
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "data gagal di SIMPAN");
         }
-        datatable();
+        
         
     }//GEN-LAST:event_saveMobilActionPerformed
 
     private void gambarMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gambarMobilActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gambarMobilActionPerformed
-
-    private void pemilikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pemilikActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pemilikActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,6 +456,7 @@ String status = statusMobil.getText();
     private javax.swing.JTextField gambarMobil;
     private javax.swing.JButton hapusMobil;
     private javax.swing.JTextField harga;
+    private javax.swing.JComboBox<String> jComboBox_pemilik;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -487,7 +471,6 @@ String status = statusMobil.getText();
     private javax.swing.JTextField kodeMobil;
     private javax.swing.JTextField namaMobil;
     private javax.swing.JTextField nopolMobil;
-    private javax.swing.JTextField pemilik;
     private javax.swing.JButton saveMobil;
     private javax.swing.JTextField statusMobil;
     private javax.swing.JTable table;
