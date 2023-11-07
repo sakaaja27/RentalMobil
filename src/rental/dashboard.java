@@ -796,11 +796,11 @@ public class dashboard extends javax.swing.JFrame {
     private void jLabel_SewaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SewaMouseClicked
         // TODO add your handling code here:
         penyewaan frm_sewa = new penyewaan();
-<<<<<<< HEAD
+//<<<<<<< HEAD
         frm_sewa.setVisible(false);
-=======
+//=======
          this.setVisible(false);
->>>>>>> bef9b5efb158547d310432e90dd59ad3e97cb7e0
+//>>>>>>> bef9b5efb158547d310432e90dd59ad3e97cb7e0
         frm_sewa.setVisible(true);
        
 
@@ -808,11 +808,11 @@ public class dashboard extends javax.swing.JFrame {
 
     private void jLabel_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dashboardMouseClicked
         // TODO add your handling code here:
-<<<<<<< HEAD
-
-=======
-       
->>>>>>> 8129d6f30c7302b4a73dd2dfaded4ac348ff1a71
+//<<<<<<< HEAD
+//
+//=======
+//       
+//>>>>>>> 8129d6f30c7302b4a73dd2dfaded4ac348ff1a71
     }//GEN-LAST:event_jLabel_dashboardMouseClicked
 
     private void jLabel_PengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PengembalianMouseClicked
