@@ -5,6 +5,7 @@
 package rental;
 
 import DB_koneksi.DB;
+import functions.logout;
 import java.awt.Color;
 import static java.awt.Color.red;
 import java.awt.Image;
@@ -455,6 +456,9 @@ public class DataMobil extends javax.swing.JFrame {
 
     private void jLabel_SewaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SewaMouseClicked
         // TODO add your handling code here:
+        penyewaan frm_sewa = new penyewaan();
+        this.setVisible(false);
+        frm_sewa.setVisible(true);
         
     }//GEN-LAST:event_jLabel_SewaMouseClicked
 
@@ -471,7 +475,7 @@ public class DataMobil extends javax.swing.JFrame {
     private void jLabel_dataMobilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataMobilMouseClicked
         // TODO add your handling code here:
         DataMobil frm_sewa = new DataMobil();
-        
+        this.setVisible(false);
         frm_sewa.setVisible(true);
     }//GEN-LAST:event_jLabel_dataMobilMouseClicked
 
@@ -516,8 +520,11 @@ public class DataMobil extends javax.swing.JFrame {
 
     private void jLabel_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dashboardMouseClicked
         // TODO add your handling code here:
-        dashboard frm_dsh = new dashboard();
-        frm_dsh.setVisible(false);
+        DashboardAdmin frm_dsh = new DashboardAdmin();
+//<<<<<<< HEAD
+//=======
+        this.setVisible(false);
+//>>>>>>> bef9b5efb158547d310432e90dd59ad3e97cb7e0
         frm_dsh.setVisible(true);
 
     }//GEN-LAST:event_jLabel_dashboardMouseClicked
@@ -534,6 +541,8 @@ public class DataMobil extends javax.swing.JFrame {
 
     private void jLabel_KeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_KeluarMouseClicked
         // TODO add your handling code here:
+        login login = new login();
+        logout.run(this, login);
     }//GEN-LAST:event_jLabel_KeluarMouseClicked
 
     private void jLabel_KeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_KeluarMouseEntered

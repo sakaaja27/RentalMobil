@@ -4,6 +4,7 @@
  */
 package rental;
 
+import functions.logout;
 import java.awt.Color;
 import static java.awt.Color.red;
 import java.awt.Image;
@@ -470,6 +471,7 @@ public class penyewaan extends javax.swing.JFrame {
     private void jLabel_SewaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SewaMouseClicked
         // TODO add your handling code here:
         penyewaan frm_sewa = new penyewaan();
+        this.setVisible(false);
         frm_sewa.setVisible(true);
     }//GEN-LAST:event_jLabel_SewaMouseClicked
 
@@ -485,6 +487,9 @@ public class penyewaan extends javax.swing.JFrame {
 
     private void jLabel_dataMobilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataMobilMouseClicked
         // TODO add your handling code here:
+        DataMobil frm_DataMobil = new DataMobil();
+        this.setVisible(false);
+        frm_DataMobil.setVisible(true);
     }//GEN-LAST:event_jLabel_dataMobilMouseClicked
 
     private void jLabel_dataMobilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataMobilMouseEntered
@@ -528,7 +533,7 @@ public class penyewaan extends javax.swing.JFrame {
 
     private void jLabel_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dashboardMouseClicked
         // TODO add your handling code here:
-        dashboard frm_dsh = new dashboard();
+        DashboardAdmin frm_dsh = new DashboardAdmin();
 //<<<<<<< HEAD
 //=======
         this.setVisible(false);
@@ -548,6 +553,8 @@ public class penyewaan extends javax.swing.JFrame {
 
     private void jLabel_KeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_KeluarMouseClicked
         // TODO add your handling code here:
+        login login = new login();
+        logout.run(this, login);
     }//GEN-LAST:event_jLabel_KeluarMouseClicked
 
     private void jLabel_KeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_KeluarMouseEntered

@@ -270,10 +270,10 @@ public class login extends javax.swing.JFrame {
                 if (rs.next()) {
 //                    System.out.println("Login");
 //                  ini buat pergi ke dashboard jika login berhasil
-                    dashboard frm_dsh = new dashboard();
+                    DashboardAdmin frm_dsh = new DashboardAdmin();
                     frm_dsh.setVisible(true);
 //                    display username di dashboard
-                    dashboard.jLabel_hello_Admin.setText(rs.getString("username"));
+                    DashboardAdmin.jLabel_hallo_admin.setText(rs.getString("username"));
     //                hide login
                     this.dispose();
                 }
