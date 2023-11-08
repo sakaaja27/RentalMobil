@@ -31,6 +31,7 @@ public class addDataMobil extends javax.swing.JFrame {
      */
     public addDataMobil() {
         initComponents();
+        this.setLocationRelativeTo(null);
         getPemilik();
     }
 
@@ -62,8 +63,6 @@ public class addDataMobil extends javax.swing.JFrame {
         addMobil = new javax.swing.JButton();
         editMobil = new javax.swing.JButton();
         hapusMobil = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
         saveMobil = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -73,6 +72,9 @@ public class addDataMobil extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jDesktopPane1.setOpaque(false);
 
         jLabel1.setText("Kode Mobil");
 
@@ -143,19 +145,6 @@ public class addDataMobil extends javax.swing.JFrame {
             }
         });
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Kode Mobil", "Nama Mobil", "Nopol", "Pemilik", "Tahun", "Harga", "Gambar", "Status"
-            }
-        ));
-        jScrollPane1.setViewportView(table);
-
         saveMobil.setText("Save");
         saveMobil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,7 +177,6 @@ public class addDataMobil extends javax.swing.JFrame {
         jDesktopPane1.setLayer(addMobil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(editMobil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(hapusMobil, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(saveMobil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -255,10 +243,6 @@ public class addDataMobil extends javax.swing.JFrame {
                         .addComponent(namaMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(84, 84, 84)))
                 .addGap(53, 53, 53))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(0, 21, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,9 +282,7 @@ public class addDataMobil extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(statusMobil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editMobil))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
         jPanel1.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 500));
@@ -467,13 +449,11 @@ String status = statusMobil.getText();
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField kodeMobil;
     private javax.swing.JTextField namaMobil;
     private javax.swing.JTextField nopolMobil;
     private javax.swing.JButton saveMobil;
     private javax.swing.JTextField statusMobil;
-    private javax.swing.JTable table;
     private javax.swing.JTextField tahun;
     // End of variables declaration//GEN-END:variables
 }

@@ -63,28 +63,28 @@ public class DataMobil extends javax.swing.JFrame {
 
     public void datatable() {
         DefaultTableModel tbl = new DefaultTableModel();
-        tbl.addColumn("Kode Mobil");
+//        tbl.addColumn("Kode Mobil");
         tbl.addColumn("Nama Mobil");
         tbl.addColumn("Nopol");
         tbl.addColumn("Pemilik");
-        tbl.addColumn("Tahun");
+        tbl.addColumn("Tahun Mobil");
         tbl.addColumn("Harga");
-        tbl.addColumn("Gambar");
+//        tbl.addColumn("Gambar");
         tbl.addColumn("Status");
         jTableMobil.setModel(tbl);
         try {
           
              Statement statement = (Statement) DB.getConnection().createStatement();
-            ResultSet res = statement.executeQuery("select * from mobil");
+            ResultSet res = statement.executeQuery("SELECT pemilik_mobil.nama_pemilik,mobil.* FROM mobil inner join pemilik_mobil ON pemilik_mobil.id_pemilik = mobil.id_pemilik;");
             while (res.next()) {
                 tbl.addRow(new Object[]{
-                    res.getString("id_mobil"),
+//                    res.getString("id_mobil"),
                     res.getString("nama_mobil"),
                     res.getString("nopol"),
-                     res.getString("id_pemilik"),
+                     res.getString("nama_pemilik"),
                     res.getString("tahun_produksi"),
                     res.getString("harga_perhari"),
-                     res.getString("gambar"),
+//                     res.getString("gambar"),
                     res.getString("status")
                 });
                 jTableMobil.setModel(tbl);
@@ -365,6 +365,7 @@ public class DataMobil extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
+        jTableMobil.setBackground(new java.awt.Color(204, 204, 204));
         jTableMobil.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -398,8 +399,10 @@ public class DataMobil extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_add))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton_add)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -412,9 +415,10 @@ public class DataMobil extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131)
-                        .addComponent(jButton_add)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_add)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(139, 139, 139)))
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
