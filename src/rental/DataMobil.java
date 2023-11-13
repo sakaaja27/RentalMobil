@@ -4,6 +4,7 @@
  */
 package rental;
 
+import Sopir.DataSopir;
 import DB_koneksi.DB;
 import functions.logout;
 import java.awt.Color;
@@ -30,7 +31,7 @@ public class DataMobil extends javax.swing.JFrame {
      * Creates new form DataMobil
      */
     //      border
-        Border red_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red);
+        Border red_border = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.red);
         Border empty_border = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(254,254,254));
     public DataMobil() {
         this.setResizable(false);
@@ -48,7 +49,7 @@ public class DataMobil extends javax.swing.JFrame {
         
         //menu item
         displayImage(jLabel_icon_dashboard.getWidth(), jLabel_icon_dashboard.getHeight(),"../images/icon_menu/icon_dashboard.png",jLabel_icon_dashboard);
-        displayImage(jLabel_icon_sewa1.getWidth(), jLabel_icon_sewa1.getHeight(),"../images/icon_menu/sewa.png",jLabel_icon_sewa1);
+        displayImage(jLabel_icon_sewa.getWidth(), jLabel_icon_sewa.getHeight(),"../images/icon_menu/sewa.png",jLabel_icon_sewa);
         displayImage(jLabel_icon_pengembalian.getWidth(), jLabel_icon_pengembalian.getHeight(),"../images/icon_menu/pengembalian.png",jLabel_icon_pengembalian);
         displayImage(jLabel_icon_data_mobil.getWidth(), jLabel_icon_data_mobil.getHeight(),"../images/icon_menu/mobil.png",jLabel_icon_data_mobil);
         displayImage(jLabel_icon_data_sopir.getWidth(), jLabel_icon_data_sopir.getHeight(),"../images/icon_menu/sopir.png",jLabel_icon_data_sopir);
@@ -63,7 +64,8 @@ public class DataMobil extends javax.swing.JFrame {
 
     public void datatable() {
         DefaultTableModel tbl = new DefaultTableModel();
-//        tbl.addColumn("Kode Mobil");
+        tbl.addColumn("Kode Mobil");
+//        tbl.getColumnName("Kode Mobil" ).
         tbl.addColumn("Nama Mobil");
         tbl.addColumn("Nopol");
         tbl.addColumn("Pemilik");
@@ -72,13 +74,15 @@ public class DataMobil extends javax.swing.JFrame {
 //        tbl.addColumn("Gambar");
         tbl.addColumn("Status");
         jTableMobil.setModel(tbl);
+        jTableMobil.getColumnModel().getColumn(0).setMinWidth(0);
+        jTableMobil.getColumnModel().getColumn(0).setMaxWidth(0);
         try {
           
              Statement statement = (Statement) DB.getConnection().createStatement();
             ResultSet res = statement.executeQuery("SELECT pemilik_mobil.nama_pemilik,mobil.* FROM mobil inner join pemilik_mobil ON pemilik_mobil.id_pemilik = mobil.id_pemilik;");
             while (res.next()) {
                 tbl.addRow(new Object[]{
-//                    res.getString("id_mobil"),
+                    res.getString("id_mobil"),
                     res.getString("nama_mobil"),
                     res.getString("nopol"),
                      res.getString("nama_pemilik"),
@@ -126,7 +130,7 @@ public class DataMobil extends javax.swing.JFrame {
         jLabel_dataSopir = new javax.swing.JLabel();
         jLabel_dashboard = new javax.swing.JLabel();
         jLabel_icon_pengembalian = new javax.swing.JLabel();
-        jLabel_icon_sewa1 = new javax.swing.JLabel();
+        jLabel_icon_sewa = new javax.swing.JLabel();
         jLabel_icon_data_mobil = new javax.swing.JLabel();
         jLabel_icon_data_sopir = new javax.swing.JLabel();
         jLabel_icon_dashboard = new javax.swing.JLabel();
@@ -134,7 +138,7 @@ public class DataMobil extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMobil = new javax.swing.JTable();
         jButton_add = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButton_refresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -272,9 +276,9 @@ public class DataMobil extends javax.swing.JFrame {
         jLabel_icon_pengembalian.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_icon_pengembalian.setOpaque(true);
 
-        jLabel_icon_sewa1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel_icon_sewa1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel_icon_sewa1.setOpaque(true);
+        jLabel_icon_sewa.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel_icon_sewa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_icon_sewa.setOpaque(true);
 
         jLabel_icon_data_mobil.setBackground(new java.awt.Color(255, 255, 255));
         jLabel_icon_data_mobil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -317,7 +321,7 @@ public class DataMobil extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel_icon_pengembalian, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel_icon_sewa1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_icon_sewa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_icon_data_mobil, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_icon_data_sopir, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_icon_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -346,7 +350,7 @@ public class DataMobil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_Sewa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_icon_sewa1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_icon_sewa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -378,19 +382,24 @@ public class DataMobil extends javax.swing.JFrame {
                 "Nama Mobil", "Nopol", "Tahun", "Price (day)", "Status", "Action", "Detail Pemilik", "KodeMobil"
             }
         ));
+        jTableMobil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMobilMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableMobil);
 
-        jButton_add.setText("ADD");
+        jButton_add.setText("Add");
         jButton_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_addActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Action");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_refresh.setText("Refresh");
+        jButton_refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_refreshActionPerformed(evt);
             }
         });
 
@@ -413,7 +422,7 @@ public class DataMobil extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButton_add)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(jButton_refresh))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -429,7 +438,7 @@ public class DataMobil extends javax.swing.JFrame {
                         .addGap(98, 98, 98)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton_add)
-                            .addComponent(jButton1))
+                            .addComponent(jButton_refresh))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(190, 190, 190)))
@@ -524,6 +533,10 @@ public class DataMobil extends javax.swing.JFrame {
 
     private void jLabel_dataSopirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataSopirMouseClicked
         // TODO add your handling code here:
+        DataSopir frm_DataSopir = new DataSopir();
+         this.setVisible(false);
+        frm_DataSopir.setVisible(true);
+        
     }//GEN-LAST:event_jLabel_dataSopirMouseClicked
 
     private void jLabel_dataSopirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataSopirMouseEntered
@@ -573,15 +586,24 @@ public class DataMobil extends javax.swing.JFrame {
 
     private void jButton_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_addActionPerformed
         // TODO add your handling code here:
-         addDataMobil frm_addDataMobil = new addDataMobil();
+         addDataMobil frm_addDataMobil = new addDataMobil(null);
         frm_addDataMobil.setVisible(true);
     }//GEN-LAST:event_jButton_addActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_refreshActionPerformed
         // TODO add your handling code here:
-        editDataMobil frm_edit = new editDataMobil();
-        frm_edit.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        datatable();
+    }//GEN-LAST:event_jButton_refreshActionPerformed
+
+    private void jTableMobilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMobilMouseClicked
+        // TODO add your handling code here:
+        int baris = jTableMobil.rowAtPoint(evt.getPoint());
+        String id_mobil = jTableMobil.getValueAt(baris,0).toString();
+        JOptionPane.showMessageDialog(null,id_mobil);
+        addDataMobil frm_add = new addDataMobil(id_mobil);
+        frm_add.setVisible(true);
+        
+    }//GEN-LAST:event_jTableMobilMouseClicked
 
     /**
      * @param args the command line arguments
@@ -621,8 +643,8 @@ public class DataMobil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_add;
+    private javax.swing.JButton jButton_refresh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -636,7 +658,7 @@ public class DataMobil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_icon_data_mobil;
     private javax.swing.JLabel jLabel_icon_data_sopir;
     private javax.swing.JLabel jLabel_icon_pengembalian;
-    private javax.swing.JLabel jLabel_icon_sewa1;
+    private javax.swing.JLabel jLabel_icon_sewa;
     private javax.swing.JLabel jLabelclose;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

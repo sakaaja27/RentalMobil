@@ -248,13 +248,15 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel_Pengembalian" alignment="0" pref="134" max="32767" attributes="0"/>
+                                      <Component id="jLabel_Pengembalian" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel_dataSopir" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel_Sewa" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel_dashboard" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                                               <Component id="jLabel_dataMobil" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel_dataAdmin" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel_dataCustomer" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -301,7 +303,11 @@
                               </Group>
                               <Component id="jLabel_icon_pengembalian" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="270" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabel_dataAdmin" min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabel_dataCustomer" min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace pref="192" max="32767" attributes="0"/>
                           <Component id="jLabel_Keluar2" min="-2" pref="27" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
@@ -466,6 +472,38 @@
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_Keluar2MouseClicked"/>
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_Keluar2MouseEntered"/>
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_Keluar2MouseExited"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel_dataAdmin">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Trebuchet MS" size="20" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Data Admin"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_dataAdminMouseClicked"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_dataAdminMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_dataAdminMouseExited"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel_dataCustomer">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Trebuchet MS" size="20" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Data Customer"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_dataCustomerMouseClicked"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_dataCustomerMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_dataCustomerMouseExited"/>
                   </Events>
                 </Component>
               </SubComponents>

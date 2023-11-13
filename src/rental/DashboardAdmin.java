@@ -4,6 +4,9 @@
  */
 package rental;
 
+import Sopir.DataSopir;
+import dataAdmin.dataAdmin;
+import dataCustomer.dataCustomer;
 import functions.logout;
 import java.awt.Color;
 import java.awt.Image;
@@ -25,7 +28,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
      * Creates new form DashboardAdmin
      */
    //      border
-    Border red_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red);
+    Border red_border = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.red);
     Border empty_border = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(254, 254, 254));
 
     public DashboardAdmin() {
@@ -110,6 +113,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel_icon_data_sopir = new javax.swing.JLabel();
         jLabel_icon_dashboard = new javax.swing.JLabel();
         jLabel_Keluar2 = new javax.swing.JLabel();
+        jLabel_dataAdmin = new javax.swing.JLabel();
+        jLabel_dataCustomer = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -259,11 +264,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_dashboardMouseClicked(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel_dashboardMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel_dashboardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_dashboardMouseExited(evt);
             }
         });
 
@@ -306,6 +311,36 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
 
+        jLabel_dataAdmin.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel_dataAdmin.setText("Data Admin");
+        jLabel_dataAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_dataAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_dataAdminMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_dataAdminMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_dataAdminMouseExited(evt);
+            }
+        });
+
+        jLabel_dataCustomer.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel_dataCustomer.setText("Data Customer");
+        jLabel_dataCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_dataCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_dataCustomerMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_dataCustomerMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_dataCustomerMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -322,13 +357,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             .addComponent(jLabel_icon_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_Pengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(jLabel_Pengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel_dataSopir)
                                     .addComponent(jLabel_Sewa)
                                     .addComponent(jLabel_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_dataMobil))
+                                    .addComponent(jLabel_dataMobil)
+                                    .addComponent(jLabel_dataAdmin)
+                                    .addComponent(jLabel_dataCustomer))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -360,7 +397,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
                                 .addComponent(jLabel_dataSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel_icon_data_sopir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel_icon_pengembalian, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_dataAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_dataCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
                 .addComponent(jLabel_Keluar2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -795,6 +836,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jLabel_dataSopirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataSopirMouseClicked
         // TODO add your handling code here:
+         DataSopir frm_DataSopir = new DataSopir();
+         this.setVisible(false);
+        frm_DataSopir.setVisible(true);
     }//GEN-LAST:event_jLabel_dataSopirMouseClicked
 
     private void jLabel_PengembalianMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PengembalianMouseExited
@@ -854,6 +898,36 @@ public class DashboardAdmin extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabelcloseMouseClicked
 
+    private void jLabel_dataAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataAdminMouseClicked
+        // TODO add your handling code here:
+        dataAdmin frm_DataAdmin = new dataAdmin();
+         this.setVisible(false);
+        frm_DataAdmin.setVisible(true);
+    }//GEN-LAST:event_jLabel_dataAdminMouseClicked
+
+    private void jLabel_dataAdminMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataAdminMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_dataAdminMouseEntered
+
+    private void jLabel_dataAdminMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataAdminMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_dataAdminMouseExited
+
+    private void jLabel_dataCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataCustomerMouseClicked
+        // TODO add your handling code here:
+         dataCustomer frm_DataCustomer = new dataCustomer();
+         this.setVisible(false);
+        frm_DataCustomer.setVisible(true);
+    }//GEN-LAST:event_jLabel_dataCustomerMouseClicked
+
+    private void jLabel_dataCustomerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataCustomerMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_dataCustomerMouseEntered
+
+    private void jLabel_dataCustomerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_dataCustomerMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_dataCustomerMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -893,7 +967,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -910,10 +983,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Sewa;
     private javax.swing.JLabel jLabel_cust_icon;
     private javax.swing.JLabel jLabel_dashboard;
+    private javax.swing.JLabel jLabel_dataAdmin;
+    private javax.swing.JLabel jLabel_dataCustomer;
     private javax.swing.JLabel jLabel_dataMobil;
     private javax.swing.JLabel jLabel_dataSopir;
     private javax.swing.JLabel jLabel_gmbr_mobil;
-    private javax.swing.JLabel jLabel_gmbr_mobil1;
     private javax.swing.JLabel jLabel_gmbr_mobil2;
     private javax.swing.JLabel jLabel_gmbr_mobil3;
     public static javax.swing.JLabel jLabel_hallo_admin;
@@ -928,8 +1002,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel39;
