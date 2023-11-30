@@ -27,11 +27,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formSopir extends javax.swing.JFrame {
 
     String id;
+    Sopir sopir;
     /**
      * Creates new form FormSopir
      */
-    public formSopir(String id_supir) {
+    public formSopir(String id_supir,Sopir sopir) {
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setUndecorated(true);
         initComponents();
+        this.sopir = sopir;
         this.setLocationRelativeTo(null);
         id = id_supir;
         
@@ -39,6 +45,8 @@ public class formSopir extends javax.swing.JFrame {
             getData(id_supir);
             kodeSopir.setText(id_supir);
         }
+        //ini agar posisi center waktu buka
+        this.setLocationRelativeTo(null);
     }
     
     
@@ -64,12 +72,11 @@ public class formSopir extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         noTelp = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel_foto = new javax.swing.JLabel();
         saveSopir = new javax.swing.JButton();
         jButton_hapus1 = new javax.swing.JButton();
         noKtp = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         saveMobil.setBackground(new java.awt.Color(255, 0, 51));
         saveMobil.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -94,9 +101,10 @@ public class formSopir extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 153, 153), 5, true));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
         jLabel9.setText("Form Sopir");
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
@@ -148,13 +156,6 @@ public class formSopir extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("No.Telp");
 
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Foto Sopir");
-
-        jLabel_foto.setBackground(new java.awt.Color(238, 218, 222));
-        jLabel_foto.setOpaque(true);
-
         saveSopir.setBackground(new java.awt.Color(255, 0, 51));
         saveSopir.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         saveSopir.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,85 +188,81 @@ public class formSopir extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("No.Ktp");
 
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("X");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(kodeSopir)
-                        .addComponent(jLabel7)
-                        .addComponent(namaSopir, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                        .addComponent(jLabel8))
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(noTelp, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(jLabel9))
+                        .addGap(161, 161, 161)
+                        .addComponent(saveSopir)
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton_hapus1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(117, 117, 117)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel10)
-                            .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(noKtp, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(jButton_hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(237, 237, 237)
-                        .addComponent(saveSopir)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(kodeSopir, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                                    .addComponent(namaSopir)
+                                    .addComponent(noTelp)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(105, 105, 105)
+                                .addComponent(jLabel9))
+                            .addComponent(noKtp)
+                            .addComponent(alamat))))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(kodeSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(noTelp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(namaSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(noKtp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(saveSopir)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_hapus1)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addComponent(kodeSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(namaSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(noTelp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(noKtp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveSopir)
+                    .addComponent(jButton_hapus1))
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,7 +283,7 @@ public class formSopir extends javax.swing.JFrame {
         try {
           
              Statement statement = (Statement) DB.getConnection().createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM supir  where id_supir ='"+id_supir+"'");
+            ResultSet res = statement.executeQuery("SELECT * FROM supir  where kd_supir ='"+id_supir+"'");
             
             while (res.next()) {
                namaSopir.setText(res.getString("nama_supir"));
@@ -332,6 +329,7 @@ public class formSopir extends javax.swing.JFrame {
         String no_ktp = noKtp.getText();
         String no_tlp = noTelp.getText();
         String Alamat = alamat.getText();
+        String num = kodeSopir.getText();
         
         //        String gambar = gambarMobil.getText();
         //        String status = statusMobil.getText();
@@ -341,12 +339,21 @@ public class formSopir extends javax.swing.JFrame {
             Statement statement = (Statement) DB.getConnection().createStatement();
             String sql;
             if (id != null) {
-                sql = "UPDATE supir SET nama_supir = '" +namaSopir.getText()+"', no_ktp = '"+noKtp.getText()+"',no_telp = '"+noTelp.getText()+"',alamat = '"+alamat.getText()+"' WHERE supir.id_supir = '"+kodeSopir.getText()+"'";
+                sql = "UPDATE supir SET nama_supir = '" +namaSopir.getText()+"', no_ktp = '"+noKtp.getText()+"',no_telp = '"+noTelp.getText()+"',alamat = '"+alamat.getText()+"' WHERE kd_supir = '"+kodeSopir.getText()+"'";
+                JOptionPane.showMessageDialog(null, "data berhasil di Ubah");
             }else{
-                sql = "insert into supir VALUES(null,'" + nama_supir + "', '" + no_ktp + "', '" +no_tlp + "','" + Alamat +"', 0);"; }
+                ResultSet res = statement.executeQuery("SELECT genSupirID() AS supirID");
+                String kdSupir = ""; 
+                if(res.next()){
+                    kdSupir = res.getString("supirID");
+                }
+                sql = "insert into supir VALUES('"+kdSupir+"','" + nama_supir + "', '" + no_ktp + "', '" +no_tlp + "','" + Alamat +"','bersedia');"; 
+                JOptionPane.showMessageDialog(null, "data berhasil di SIMPAN");
+            }
             statement.executeUpdate(sql);
             statement.close();
-            JOptionPane.showMessageDialog(null, "data berhasil di SIMPAN");
+            sopir.datatable();
+            
             this.dispose();
 
         } catch (Exception e) {
@@ -361,12 +368,16 @@ public class formSopir extends javax.swing.JFrame {
             if (id != null) {
                 Statement statement = (Statement) DB.getConnection().createStatement();
                 String sql;
-                sql = "DELETE FROM supir where id_supir = '"+kodeSopir.getText()+"'";
-                java.sql.Connection conn = (Connection) DB.getConnection();
-                java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-                pst.execute();
-                JOptionPane.showMessageDialog(this,"Data berhasil dihapus");
-                this.dispose();
+                if (JOptionPane.showConfirmDialog(null,"Yakin ingin menghapus ?","Pesan",JOptionPane.OK_CANCEL_OPTION)== JOptionPane.OK_OPTION) {
+                     sql = "DELETE FROM supir where kd_supir = '"+kodeSopir.getText()+"'";
+                    java.sql.Connection conn = (Connection) DB.getConnection();
+                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.execute();
+                    JOptionPane.showMessageDialog(this,"Data berhasil dihapus");
+                    sopir.datatable();
+                    this.dispose();
+                }
+               
             } else {
                 namaSopir.setText(null);
                 noKtp.setText(null);
@@ -384,6 +395,11 @@ public class formSopir extends javax.swing.JFrame {
     private void noKtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noKtpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_noKtpActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -416,7 +432,7 @@ public class formSopir extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formSopir(null).setVisible(true);
+                new formSopir(null,null).setVisible(true);
             }
         });
     }
@@ -428,11 +444,10 @@ public class formSopir extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel_foto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField kodeSopir;
     private javax.swing.JTextField namaSopir;

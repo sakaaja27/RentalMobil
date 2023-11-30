@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import owner.dashboardOwner;
 
 /**
  *
@@ -20,6 +22,8 @@ import javax.swing.border.Border;
  */
 public class login extends javax.swing.JFrame {
 
+    public static String namaUser;
+    public static String idUser;
     /**
      * Creates new form login
      */
@@ -33,7 +37,7 @@ public class login extends javax.swing.JFrame {
 //        ini agar posisi center waktu buka
         this.setLocationRelativeTo(null);
 //        ini images
-        jLabel_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/bglogin.png")));
+        jLabel_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/bglogin1.png")));
 
     }
 
@@ -259,7 +263,7 @@ public class login extends javax.swing.JFrame {
         
 //        check isian
         if (username.trim().toLowerCase().equals("username") || password.trim().toLowerCase().equals("password")){
-            System.out.println("Masukkan username & passoword yang valid");
+           JOptionPane.showMessageDialog(null, "Username atau Password salah");
         } else {
             try {
                 ps = DB.getConnection().prepareStatement(query);
@@ -268,17 +272,29 @@ public class login extends javax.swing.JFrame {
                 rs = ps.executeQuery();
 
                 if (rs.next()) {
-//                    System.out.println("Login");
+                    idUser = rs.getString("kd_user");
+                    namaUser = rs.getString("nama_lengkap");
+                    if (rs.getString("role").equals("Owner")) {
+                         dashboardOwner frm_dsh = new dashboardOwner();
+                        frm_dsh.setVisible(true);
+                        dashboardOwner.owner.setText(rs.getString("username"));
+                    }
+                    if (rs.getString("role").equals("Admin")) {
+                         Dashboard frm_dsh = new Dashboard();
+                        frm_dsh.setVisible(true);
+                        Dashboard.admin.setText(rs.getString("username"));
+                    }
 //                  ini buat pergi ke dashboard jika login berhasil
-                    DashboardAdmin frm_dsh = new DashboardAdmin();
-                    frm_dsh.setVisible(true);
+                   
 //                    display username di dashboard
-                    DashboardAdmin.jLabel_hallo_admin.setText(rs.getString("username"));
+//                    
     //                hide login
                     this.dispose();
                 }
                 else {
-                    System.out.println("Username & password salah");
+                   JOptionPane.showMessageDialog(null, "Username atau Password salah");
+                   jTextField_username.setText(null);
+                   jPasswordField1.setText(null);
                 }
             }
             catch(SQLException ex){

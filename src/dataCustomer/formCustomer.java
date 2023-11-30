@@ -4,17 +4,39 @@
  */
 package dataCustomer;
 
+import DB_koneksi.DB;
+import alert.alert_hapus;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sakab
  */
 public class formCustomer extends javax.swing.JFrame {
-
+    String id;
+    Customer customer;
     /**
      * Creates new form formCustomer
      */
-    public formCustomer() {
+    public formCustomer(String kd_customer,Customer customer) {
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setUndecorated(true);
         initComponents();
+        id = kd_customer;
+        this.customer = customer;
+        if (kd_customer != null) {
+            getData(kd_customer);
+            kodeCust.setText(kd_customer);
+            
+        }
+        //ini agar posisi center waktu buka
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,22 +60,21 @@ public class formCustomer extends javax.swing.JFrame {
         no_telp = new javax.swing.JTextField();
         jButton_save = new javax.swing.JButton();
         jButton_delete = new javax.swing.JButton();
+        kodeCust = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153), 5));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setForeground(new java.awt.Color(255, 0, 51));
         jLabel9.setText("Form Customer");
 
         no_ktp.setBackground(new java.awt.Color(238, 218, 222));
         no_ktp.setForeground(new java.awt.Color(0, 0, 0));
-        no_ktp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                no_ktpActionPerformed(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -61,11 +82,6 @@ public class formCustomer extends javax.swing.JFrame {
 
         namaLengkap.setBackground(new java.awt.Color(238, 218, 222));
         namaLengkap.setForeground(new java.awt.Color(0, 0, 0));
-        namaLengkap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namaLengkapActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -73,11 +89,6 @@ public class formCustomer extends javax.swing.JFrame {
 
         alamat.setBackground(new java.awt.Color(238, 218, 222));
         alamat.setForeground(new java.awt.Color(0, 0, 0));
-        alamat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alamatActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -95,9 +106,42 @@ public class formCustomer extends javax.swing.JFrame {
             }
         });
 
+        jButton_save.setBackground(new java.awt.Color(255, 0, 51));
+        jButton_save.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jButton_save.setForeground(new java.awt.Color(255, 255, 255));
         jButton_save.setText("Save");
+        jButton_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_saveActionPerformed(evt);
+            }
+        });
 
+        jButton_delete.setBackground(new java.awt.Color(255, 0, 51));
+        jButton_delete.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jButton_delete.setForeground(new java.awt.Color(255, 255, 255));
         jButton_delete.setText("Delete");
+        jButton_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_deleteActionPerformed(evt);
+            }
+        });
+
+        kodeCust.setBackground(new java.awt.Color(238, 218, 222));
+        kodeCust.setForeground(new java.awt.Color(0, 0, 0));
+        kodeCust.setEnabled(false);
+
+        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Kode Customer");
+
+        jLabel13.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("X");
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,31 +153,45 @@ public class formCustomer extends javax.swing.JFrame {
                         .addGap(183, 183, 183)
                         .addComponent(jLabel9))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(no_ktp, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addComponent(namaLengkap, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
+                        .addGap(108, 108, 108)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton_delete)
-                            .addComponent(jButton_save))))
-                .addContainerGap(199, Short.MAX_VALUE))
+                            .addComponent(no_ktp, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(namaLengkap, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel11)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(39, 39, 39)
+                                    .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel12))
+                            .addComponent(kodeCust, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(155, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton_save)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_delete)
+                        .addGap(209, 209, 209))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addComponent(jLabel13)
+                .addGap(8, 8, 8)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(kodeCust, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addComponent(no_ktp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
@@ -141,17 +199,17 @@ public class formCustomer extends javax.swing.JFrame {
                 .addComponent(namaLengkap, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton_save)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_delete)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_delete)
+                    .addComponent(jButton_save))
+                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,22 +226,135 @@ public class formCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void no_ktpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_ktpActionPerformed
+    void getData(String kd_customer) {
+        try {
+          
+             Statement statement = (Statement) DB.getConnection().createStatement();
+            ResultSet res = statement.executeQuery("SELECT * FROM customer  where kd_customer ='"+kd_customer+"'");
+            
+            while (res.next()) {
+               
+               namaLengkap.setText(res.getString("nama_lengkap"));
+               no_ktp.setText(res.getString("no_ktp"));
+               no_telp.setText(res.getString("no_telp"));
+               alamat.setText(res.getString("alamat"));
+//                     res.getString("gambar"),
+//                    status.setText(res.getString("nopol"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Data tidak ada");
+        }
+    }
+    private void jButton_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_no_ktpActionPerformed
+//        alert_hapus alert =new alert_hapus();
+//        alert.setVisible(true);
+         try {
+            if (id != null) {
+                Statement statement = (Statement) DB.getConnection().createStatement();
+                String sql;
+                if (JOptionPane.showConfirmDialog(null,"Yakin ingin menghapus ?","Konfirmasi",JOptionPane.OK_CANCEL_OPTION)== JOptionPane.OK_OPTION) {
+                     sql = "DELETE FROM customer where kd_customer = '"+kodeCust.getText()+"'";
+                    java.sql.Connection conn = (Connection) DB.getConnection();
+                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.execute();
+                    JOptionPane.showMessageDialog(this,"Data berhasil dihapus");
+                    customer.datatable();
+                    this.dispose();
+                }
+               
+            } else {
+                namaLengkap.setText(null);
+                no_ktp.setText(null);
+                alamat.setText(null);
+                no_telp.setText(null);
+                JOptionPane.showMessageDialog(this,"Data berhasil dikosongkan");
 
-    private void namaLengkapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaLengkapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_namaLengkapActionPerformed
+            }
 
-    private void alamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alamatActionPerformed
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButton_deleteActionPerformed
+
+//    void hapus(){
+//         try {
+//            if (id != null) {
+//                Statement statement = (Statement) DB.getConnection().createStatement();
+//                String sql;
+//                if (JOptionPane.showConfirmDialog(null,"Yakin ingin menghapus ?","Konfirmasi",JOptionPane.OK_CANCEL_OPTION)== JOptionPane.OK_OPTION) {
+//                     sql = "DELETE FROM customer where kd_customer = '"+kodeCust.getText()+"'";
+//                    java.sql.Connection conn = (Connection) DB.getConnection();
+//                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+//                    pst.execute();
+//                    JOptionPane.showMessageDialog(this,"Data berhasil dihapus");
+//                    customer.datatable();
+//                    this.dispose();
+//                }
+//               
+//            } else {
+//                namaLengkap.setText(null);
+//                no_ktp.setText(null);
+//                alamat.setText(null);
+//                no_telp.setText(null);
+//                JOptionPane.showMessageDialog(this,"Data berhasil dikosongkan");
+//
+//            }
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, e.getMessage());
+//        }
+//    }
+    private void jButton_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_saveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_alamatActionPerformed
+        // TODO add your handling code here:
+        //        String id_mobil = kodeMobil.getText();
+        String nama = namaLengkap.getText();
+        String noktp = no_ktp.getText();
+        String noTlp = no_telp.getText();
+        String Alamat = alamat.getText();
+        String num = kodeCust.getText();
+        //        String gambar = gambarMobil.getText();
+        //        String status = statusMobil.getText();
+
+        try {
+
+            Statement statement = (Statement) DB.getConnection().createStatement();
+            String sql;
+            if (id != null) {
+                sql = "UPDATE customer SET nama_lengkap = '" +namaLengkap.getText()+"', no_ktp = '"+no_ktp.getText()+"',alamat = '"+alamat.getText()+"',no_telp = '"+no_telp.getText()+"' WHERE kd_customer = '"+kodeCust.getText()+"'";
+                JOptionPane.showMessageDialog(null, "data berhasil di Ubah");
+            }else{
+                ResultSet res = statement.executeQuery("SELECT genCustomerID() AS cusID");
+                String kdCus = ""; 
+                if(res.next()){
+                    kdCus = res.getString("cusID");
+                }
+                sql = "insert into customer VALUES('"+kdCus+"','" + nama + "', '" + noktp + "','" + Alamat +"', '" +noTlp + "');"; 
+                JOptionPane.showMessageDialog(null, "data berhasil di SIMPAN");
+            }
+            statement.executeUpdate(sql);
+            customer.datatable();
+            statement.close();
+            
+            this.dispose();
+
+        } catch (Exception e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "data gagal di SIMPAN");
+        }
+    }//GEN-LAST:event_jButton_saveActionPerformed
 
     private void no_telpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_telpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_no_telpActionPerformed
 
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jLabel13MouseClicked
+
+    
     /**
      * @param args the command line arguments
      */
@@ -214,7 +385,7 @@ public class formCustomer extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formCustomer().setVisible(true);
+                new formCustomer(null,null).setVisible(true);
             }
         });
     }
@@ -225,10 +396,13 @@ public class formCustomer extends javax.swing.JFrame {
     private javax.swing.JButton jButton_save;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField kodeCust;
     private javax.swing.JTextField namaLengkap;
     private javax.swing.JTextField no_ktp;
     private javax.swing.JTextField no_telp;
