@@ -5,16 +5,24 @@
 package rental;
 
 import DB_koneksi.DB;
+import Mobil.Form_Mobilv2;
+import functions.pop_upExcelReport;
+import functions.pop_upLoginGagal;
+import functions.pop_up_rfidv2;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.LayoutManager;
+import java.awt.RenderingHints;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
-import owner.dashboardOwner;
+import javax.swing.JPanel;
+
+import owner.dashboardOwnerV1;
 
 /**
  *
@@ -24,21 +32,24 @@ public class login extends javax.swing.JFrame {
 
     public static String namaUser;
     public static String idUser;
+    int i = 1;
+
     /**
      * Creates new form login
      */
     public login() {
         this.setResizable(false);
-          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-                this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                this.setUndecorated(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
+//                this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setUndecorated(true);
         initComponents();
 
 //        ini agar posisi center waktu buka
         this.setLocationRelativeTo(null);
 //        ini images
-        jLabel_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/bglogin1.png")));
-
+//        jLabel_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/bglogin1.png")));
+////        System.getProperty("user.dir");
+//        System.getProperty("user.dir").get"../images/bglogin1.png";
     }
 
     public void customInit() {
@@ -57,217 +68,143 @@ public class login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        Jpassword = new javax.swing.JPasswordField();
+        Jusername = new javax.swing.JTextField();
+        exit = new javax.swing.JLabel();
+        jCheckBox = new javax.swing.JCheckBox();
+        field = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel_username = new javax.swing.JLabel();
-        jLabel_password = new javax.swing.JLabel();
-        jCheckBox_showpassword = new javax.swing.JCheckBox();
-        jTextField_username = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        jButton_login1 = new javax.swing.JButton();
-        jLabel_register = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel_forgot_password = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel_logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
-        jLabel2.setText("Selamat Datang ");
-
-        jLabel_username.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel_username.setText("Username :");
-
-        jLabel_password.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel_password.setText("Password :");
-
-        jCheckBox_showpassword.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jCheckBox_showpassword.setText("Show Passsword");
-        jCheckBox_showpassword.addActionListener(new java.awt.event.ActionListener() {
+        Jpassword.setBackground(new java.awt.Color(238, 218, 222));
+        Jpassword.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        Jpassword.setForeground(new java.awt.Color(0, 0, 0));
+        Jpassword.setBorder(null);
+        Jpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox_showpasswordActionPerformed(evt);
+                JpasswordActionPerformed(evt);
             }
         });
+        getContentPane().add(Jpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 590, 500, 50));
 
-        jTextField_username.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField_username.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-
-        jPasswordField1.setBackground(new java.awt.Color(204, 204, 204));
-        jPasswordField1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        Jusername.setBackground(new java.awt.Color(238, 218, 222));
+        Jusername.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        Jusername.setForeground(new java.awt.Color(0, 0, 0));
+        Jusername.setBorder(null);
+        Jusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                JusernameActionPerformed(evt);
             }
         });
+        getContentPane().add(Jusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 440, 500, 50));
 
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 33)); // NOI18N
-        jLabel3.setText("di Auto Rentals App");
-
-        jButton_login1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton_login1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jButton_login1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_login1.setText("Login");
-        jButton_login1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_login1ActionPerformed(evt);
-            }
-        });
-
-        jLabel_register.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jLabel_register.setForeground(new java.awt.Color(226, 0, 48));
-
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jLabel4.setText("Lupa password ?");
-
-        jLabel_forgot_password.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jLabel_forgot_password.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel_forgot_password.setText("forgot password");
-        jLabel_forgot_password.addMouseListener(new java.awt.event.MouseAdapter() {
+        exit.setBackground(new java.awt.Color(204, 0, 51));
+        exit.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 24)); // NOI18N
+        exit.setForeground(new java.awt.Color(255, 0, 51));
+        exit.setText("X");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_forgot_passwordMouseClicked(evt);
+                exitMouseClicked(evt);
             }
         });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1890, 0, 20, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel_username)
-                            .addComponent(jLabel_password, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(17, 17, 17)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox_showpassword)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField_username)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton_login1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_forgot_password)))))
-                .addContainerGap(145, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(300, Short.MAX_VALUE)
-                .addComponent(jLabel_register)
-                .addGap(301, 301, 301))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(136, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel_register)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_username, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_username))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_password))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox_showpassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton_login1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel_forgot_password))
-                .addGap(233, 233, 233))
-        );
+        jCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 670, 30, 30));
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("X");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        field.setBackground(new java.awt.Color(255, 255, 255));
+        field.setForeground(new java.awt.Color(0, 0, 0));
+        field.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                fieldInputMethodTextChanged(evt);
+            }
+        });
+        field.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fieldKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldKeyTyped(evt);
+            }
+        });
+        getContentPane().add(field, new org.netbeans.lib.awtextra.AbsoluteConstraints(1640, 730, 0, 50));
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Login With RFID");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jLabel2MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 730, 390, 70));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Login");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 830, 390, 70));
 
-        jLabel_logo.setBackground(new java.awt.Color(255, 51, 51));
-        jLabel_logo.setOpaque(true);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel_logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loginv4.jpg"))); // NOI18N
+        jLabel1.setText("Lo");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_login1ActionPerformed
+    private void JusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JusernameActionPerformed
         // TODO add your handling code here:
-        String username = jTextField_username.getText();
-        String password = String.valueOf(jPasswordField1.getPassword());
-        
+    }//GEN-LAST:event_JusernameActionPerformed
+
+    private void JpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JpasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JpasswordActionPerformed
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActionPerformed
+        // untuk melihat password
+        if (jCheckBox.isSelected()) {
+            Jpassword.setEchoChar((char) 0);
+        } else {
+            Jpassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jCheckBoxActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        String username = Jusername.getText();
+        String password = String.valueOf(Jpassword.getPassword());
+
         PreparedStatement ps;
         ResultSet rs;
         String query = "SELECT * FROM `user` WHERE `username` = ? AND `password`= ?";
-        
+
 //        check isian
-        if (username.trim().toLowerCase().equals("username") || password.trim().toLowerCase().equals("password")){
-           JOptionPane.showMessageDialog(null, "Username atau Password salah");
+        if (username.trim().toLowerCase().equals("username") || password.trim().toLowerCase().equals("password")) {
+            JOptionPane.showMessageDialog(null, "Username atau Password salah");
         } else {
             try {
                 ps = DB.getConnection().prepareStatement(query);
-                ps.setString(1,username);
+                ps.setString(1, username);
                 ps.setString(2, password);
                 rs = ps.executeQuery();
 
@@ -275,59 +212,145 @@ public class login extends javax.swing.JFrame {
                     idUser = rs.getString("kd_user");
                     namaUser = rs.getString("nama_lengkap");
                     if (rs.getString("role").equals("Owner")) {
-                         dashboardOwner frm_dsh = new dashboardOwner();
+                         String activity = "Login Owner";
+                        ps = DB.getConnection().prepareStatement("CALL createLog('" + idUser + "','" + activity + "');");
+                        ps.executeUpdate();
+                        dashboardOwnerV1 frm_dsh = new dashboardOwnerV1();
                         frm_dsh.setVisible(true);
-                        dashboardOwner.owner.setText(rs.getString("username"));
+                         
                     }
                     if (rs.getString("role").equals("Admin")) {
-                         Dashboard frm_dsh = new Dashboard();
+                         String activity = "Login Admin";
+                        ps = DB.getConnection().prepareStatement("CALL createLog('" + idUser + "','" + activity + "');");
+                        ps.executeUpdate();
+                        Dashboardadmin frm_dsh = new Dashboardadmin();
                         frm_dsh.setVisible(true);
-                        Dashboard.admin.setText(rs.getString("username"));
+                       
                     }
-//                  ini buat pergi ke dashboard jika login berhasil
-                   
-//                    display username di dashboard
-//                    
-    //                hide login
                     this.dispose();
+                } else {
+                    pop_upLoginGagal error = new pop_upLoginGagal();
+                    error.setVisible(true);
+                    Jusername.setText(null);
+                    Jpassword.setText(null);
                 }
-                else {
-                   JOptionPane.showMessageDialog(null, "Username atau Password salah");
-                   jTextField_username.setText(null);
-                   jPasswordField1.setText(null);
+            } catch (SQLException ex) {
+                 System.out.println(ex.getMessage());
+                
+            }
+
+        }
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        field.setText("");
+        i = 1;
+        field.requestFocusInWindow();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void fieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldKeyTyped
+
+    }//GEN-LAST:event_fieldKeyTyped
+
+    // Create a JDialog from the JOptionPane
+    // Show the dialog
+
+    private void fieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldKeyReleased
+        PreparedStatement ps;
+        ResultSet rs;
+        String query = "SELECT * FROM `user` WHERE `rfid` = ?";
+        String RFID = field.getText();
+        try {
+            ps = DB.getConnection().prepareStatement(query);
+            ps.setString(1, RFID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                idUser = rs.getString("kd_user");
+                namaUser = rs.getString("nama_lengkap");
+                if (rs.getString("role").equals("Owner")) {
+                    dashboardOwnerV1 frm_dsh = new dashboardOwnerV1();
+                    frm_dsh.setVisible(true);
+                }
+                if (rs.getString("role").equals("Admin")) {
+                    Dashboardadmin frm_dsh = new Dashboardadmin();
+                    frm_dsh.setVisible(true);
+                }
+                this.dispose();
+            } else {
+                if (i > 10) {
+                    try {
+                        pop_up_rfidv2 pop = new pop_up_rfidv2();
+                        pop.setVisible(true);
+                        jLabel2MouseClicked(null);
+                        return;
+//                        jLabel2MouseClicked(null);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
                 }
             }
-            catch(SQLException ex){
-                System.out.println(ex.getMessage());
+            i += 1;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }//GEN-LAST:event_fieldKeyReleased
+
+    private void fieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fieldInputMethodTextChanged
+//        Form_Mobilv2 mobil = new Form_Mobilv2("", null);
+//        mobil.setVisible(true);
+    }//GEN-LAST:event_fieldInputMethodTextChanged
+
+    class RoundedPanel extends JPanel {
+
+        private Color backgroundColor;
+        private int cornerRadius = 15;
+
+        public RoundedPanel(LayoutManager layout, int radius) {
+            super(layout);
+            cornerRadius = radius;
+        }
+
+        public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
+            super(layout);
+            cornerRadius = radius;
+            backgroundColor = bgColor;
+        }
+
+        public RoundedPanel(int radius) {
+            super();
+            cornerRadius = radius;
+
+        }
+
+        public RoundedPanel(int radius, Color bgColor) {
+            super();
+            cornerRadius = radius;
+            backgroundColor = bgColor;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Dimension arcs = new Dimension(cornerRadius, cornerRadius);
+            int width = getWidth();
+            int height = getHeight();
+            Graphics2D graphics = (Graphics2D) g;
+            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            //Draws the rounded panel with borders.
+            if (backgroundColor != null) {
+                graphics.setColor(backgroundColor);
+            } else {
+                graphics.setColor(getBackground());
             }
-            
+            graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height); //paint background
+            graphics.setColor(getForeground());
+//            graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
+//             
         }
-    }//GEN-LAST:event_jButton_login1ActionPerformed
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
-
-    private void jCheckBox_showpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_showpasswordActionPerformed
-        // untuk melihat password
-        if (jCheckBox_showpassword.isSelected()) {
-            jPasswordField1.setEchoChar((char) 0);
-        } else {
-            jPasswordField1.setEchoChar('*');
-        }
-    }//GEN-LAST:event_jCheckBox_showpasswordActionPerformed
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jLabel_forgot_passwordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_forgot_passwordMouseClicked
-        // TODO add your handling code here:
-        ForgotPassword forgot = new ForgotPassword();
-        forgot.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel_forgot_passwordMouseClicked
+    }
 
     /**
      * @param args the command line arguments
@@ -361,28 +384,20 @@ public class login extends javax.swing.JFrame {
             public void run() {
 //                new login().setVisible(true);
                 login log = new login();
-             
-              
+
                 log.setVisible(true);
-                }
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_login1;
-    private javax.swing.JCheckBox jCheckBox_showpassword;
+    private javax.swing.JPasswordField Jpassword;
+    private javax.swing.JTextField Jusername;
+    private javax.swing.JLabel exit;
+    private javax.swing.JTextField field;
+    private javax.swing.JCheckBox jCheckBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel_forgot_password;
-    private javax.swing.JLabel jLabel_logo;
-    private javax.swing.JLabel jLabel_password;
-    private javax.swing.JLabel jLabel_register;
-    private javax.swing.JLabel jLabel_username;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField_username;
     // End of variables declaration//GEN-END:variables
 }

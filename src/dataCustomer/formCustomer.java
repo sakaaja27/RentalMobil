@@ -18,14 +18,14 @@ import javax.swing.JOptionPane;
  */
 public class formCustomer extends javax.swing.JFrame {
     String id;
-    Customer customer;
+    Custv2 customer;
     /**
      * Creates new form formCustomer
      */
-    public formCustomer(String kd_customer,Customer customer) {
+    public formCustomer(String kd_customer,Custv2 customer) {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setUndecorated(true);
         initComponents();
         id = kd_customer;
@@ -65,49 +65,56 @@ public class formCustomer extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153), 5));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 51));
         jLabel9.setText("Form Customer");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 50, -1, -1));
 
         no_ktp.setBackground(new java.awt.Color(238, 218, 222));
-        no_ktp.setForeground(new java.awt.Color(0, 0, 0));
+        no_ktp.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jPanel1.add(no_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 387, 60));
 
-        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel7.setText("No.Ktp");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, -1, -1));
 
         namaLengkap.setBackground(new java.awt.Color(238, 218, 222));
-        namaLengkap.setForeground(new java.awt.Color(0, 0, 0));
+        namaLengkap.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jPanel1.add(namaLengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 389, 60));
 
-        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel8.setText("Nama Lengkap");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, -1, -1));
 
         alamat.setBackground(new java.awt.Color(238, 218, 222));
-        alamat.setForeground(new java.awt.Color(0, 0, 0));
+        alamat.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jPanel1.add(alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 590, 389, 101));
 
-        jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel10.setText("Alamat");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel11.setText("No.Telp");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, -1));
 
         no_telp.setBackground(new java.awt.Color(238, 218, 222));
-        no_telp.setForeground(new java.awt.Color(0, 0, 0));
+        no_telp.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         no_telp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 no_telpActionPerformed(evt);
             }
         });
+        jPanel1.add(no_telp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 389, 60));
 
         jButton_save.setBackground(new java.awt.Color(255, 0, 51));
-        jButton_save.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jButton_save.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jButton_save.setForeground(new java.awt.Color(255, 255, 255));
         jButton_save.setText("Save");
         jButton_save.addActionListener(new java.awt.event.ActionListener() {
@@ -115,9 +122,10 @@ public class formCustomer extends javax.swing.JFrame {
                 jButton_saveActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 730, 117, 60));
 
         jButton_delete.setBackground(new java.awt.Color(255, 0, 51));
-        jButton_delete.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jButton_delete.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jButton_delete.setForeground(new java.awt.Color(255, 255, 255));
         jButton_delete.setText("Delete");
         jButton_delete.addActionListener(new java.awt.event.ActionListener() {
@@ -125,14 +133,16 @@ public class formCustomer extends javax.swing.JFrame {
                 jButton_deleteActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 730, 117, 60));
 
         kodeCust.setBackground(new java.awt.Color(238, 218, 222));
-        kodeCust.setForeground(new java.awt.Color(0, 0, 0));
+        kodeCust.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         kodeCust.setEnabled(false);
+        jPanel1.add(kodeCust, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 387, 60));
 
-        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel12.setText("Kode Customer");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -142,86 +152,9 @@ public class formCustomer extends javax.swing.JFrame {
                 jLabel13MouseClicked(evt);
             }
         });
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1164, 5, 21, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(jLabel9))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(no_ktp, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(namaLengkap, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel11)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(39, 39, 39)
-                                    .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel12))
-                            .addComponent(kodeCust, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(155, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton_save)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_delete)
-                        .addGap(209, 209, 209))
-                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel13)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel9)
-                .addGap(7, 7, 7)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(kodeCust, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(13, 13, 13)
-                .addComponent(no_ktp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namaLengkap, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addGap(12, 12, 12)
-                .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_delete)
-                    .addComponent(jButton_save))
-                .addGap(51, 51, 51))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -250,27 +183,16 @@ public class formCustomer extends javax.swing.JFrame {
 //        alert_hapus alert =new alert_hapus();
 //        alert.setVisible(true);
          try {
-            if (id != null) {
-                Statement statement = (Statement) DB.getConnection().createStatement();
-                String sql;
-                if (JOptionPane.showConfirmDialog(null,"Yakin ingin menghapus ?","Konfirmasi",JOptionPane.OK_CANCEL_OPTION)== JOptionPane.OK_OPTION) {
-                     sql = "DELETE FROM customer where kd_customer = '"+kodeCust.getText()+"'";
-                    java.sql.Connection conn = (Connection) DB.getConnection();
-                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-                    pst.execute();
-                    JOptionPane.showMessageDialog(this,"Data berhasil dihapus");
-                    customer.datatable();
-                    this.dispose();
-                }
+            
                
-            } else {
+            
                 namaLengkap.setText(null);
                 no_ktp.setText(null);
                 alamat.setText(null);
                 no_telp.setText(null);
                 JOptionPane.showMessageDialog(this,"Data berhasil dikosongkan");
 
-            }
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

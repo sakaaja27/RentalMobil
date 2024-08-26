@@ -36,16 +36,16 @@ public class Form_Mobil extends javax.swing.JFrame {
     String id;
     String imagePath;
     String imagePathOld;
-    Mobil mobil;
+    Mobilv2 mobil;
     Boolean isBrowsePressed = false;
 
     /**
      * Creates new form Form_Mobil
      */
-    public Form_Mobil(String id_mobil, Mobil mobil) {
+    public Form_Mobil(String id_mobil, Mobilv2 mobil) {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setUndecorated(true);
 
 //        Image();
@@ -144,49 +144,55 @@ public class Form_Mobil extends javax.swing.JFrame {
         namaMobil = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153), 5));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         kodeMobil.setBackground(new java.awt.Color(238, 218, 222));
+        kodeMobil.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         kodeMobil.setEnabled(false);
         kodeMobil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kodeMobilActionPerformed(evt);
             }
         });
-        jPanel1.add(kodeMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 200, 30));
+        jPanel1.add(kodeMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 320, 60));
 
         nopolMobil.setBackground(new java.awt.Color(238, 218, 222));
+        nopolMobil.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         nopolMobil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nopolMobilActionPerformed(evt);
             }
         });
-        jPanel1.add(nopolMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 200, 30));
+        jPanel1.add(nopolMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 320, 60));
 
         jComboBox_pemilik.setBackground(new java.awt.Color(238, 218, 222));
-        jPanel1.add(jComboBox_pemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 200, 30));
+        jComboBox_pemilik.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jPanel1.add(jComboBox_pemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, 320, 60));
 
         tahun.setBackground(new java.awt.Color(238, 218, 222));
+        tahun.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         tahun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tahunActionPerformed(evt);
             }
         });
-        jPanel1.add(tahun, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 200, 30));
+        jPanel1.add(tahun, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 510, 320, 60));
 
         harga.setBackground(new java.awt.Color(238, 218, 222));
+        harga.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         harga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hargaActionPerformed(evt);
             }
         });
-        jPanel1.add(harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 200, 30));
+        jPanel1.add(harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, 320, 60));
 
         saveMobil.setBackground(new java.awt.Color(255, 0, 51));
-        saveMobil.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        saveMobil.setFont(new java.awt.Font("Trebuchet MS", 1, 28)); // NOI18N
         saveMobil.setForeground(new java.awt.Color(255, 255, 255));
         saveMobil.setText("Save");
         saveMobil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -199,45 +205,39 @@ public class Form_Mobil extends javax.swing.JFrame {
                 saveMobilActionPerformed(evt);
             }
         });
-        jPanel1.add(saveMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 120, -1));
+        jPanel1.add(saveMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 720, 137, 70));
 
-        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
         jLabel9.setText("Form Mobil");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel1.setText("No Polisi");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 190, -1));
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel2.setText("Harga Perhari");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 600, 230, -1));
 
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel3.setText("Tahun Produksi");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 240, -1));
 
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel4.setText("Foto Mobil");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 230, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel5.setText("Nama Mobil");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 210, -1));
 
-        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel6.setText("Nama Pemilik");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, -1, -1));
 
         jButton_browse.setBackground(new java.awt.Color(255, 0, 0));
-        jButton_browse.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jButton_browse.setFont(new java.awt.Font("Trebuchet MS", 1, 28)); // NOI18N
         jButton_browse.setForeground(new java.awt.Color(255, 255, 255));
         jButton_browse.setText("Browse");
         jButton_browse.addActionListener(new java.awt.event.ActionListener() {
@@ -245,32 +245,32 @@ public class Form_Mobil extends javax.swing.JFrame {
                 jButton_browseActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_browse, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, -1));
+        jPanel1.add(jButton_browse, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 137, 70));
 
         jLabel_foto.setBackground(new java.awt.Color(238, 218, 222));
+        jLabel_foto.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel_foto.setOpaque(true);
-        jPanel1.add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 190, 120));
+        jPanel1.add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, 310, 250));
 
         jLabel_file.setBackground(new java.awt.Color(255, 239, 246));
-        jLabel_file.setForeground(new java.awt.Color(255, 239, 246));
+        jLabel_file.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_file.setText("##");
         jPanel1.add(jLabel_file, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, -1, 20));
 
-        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel7.setText("Kode Mobil");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 210, -1));
 
         jButton_hapus.setBackground(new java.awt.Color(255, 0, 51));
-        jButton_hapus.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jButton_hapus.setFont(new java.awt.Font("Trebuchet MS", 1, 28)); // NOI18N
         jButton_hapus.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_hapus.setText("Hapus");
+        jButton_hapus.setText("Clear");
         jButton_hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_hapusActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 120, -1));
+        jPanel1.add(jButton_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 720, 137, 70));
 
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -280,28 +280,18 @@ public class Form_Mobil extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 10, 20, 20));
 
         namaMobil.setBackground(new java.awt.Color(238, 218, 222));
+        namaMobil.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         namaMobil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 namaMobilActionPerformed(evt);
             }
         });
-        jPanel1.add(namaMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 200, 30));
+        jPanel1.add(namaMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 320, 60));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 831));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -353,26 +343,15 @@ public class Form_Mobil extends javax.swing.JFrame {
     }//GEN-LAST:event_hargaActionPerformed
 
     private void saveMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMobilActionPerformed
-        // TODO add your handling code here:
-
         String nama_mobil = namaMobil.getText();
         String nopol = nopolMobil.getText();
         String pemilik = kd_pemilik.get(jComboBox_pemilik.getSelectedIndex());
         String tahun_produksi = tahun.getText();
         String harga_perhari = harga.getText();
         String imagePath = jLabel_file.getText();
-        String num = kodeMobil.getText();
-
-        //        String status = statusMobil.getText();
         try {
             Statement statement = (Statement) DB.getConnection().createStatement();
             String sql = "";
-
-//            File imageFile = new File(imagePath);
-//            FileInputStream gmbr = new FileInputStream(imagePath);
-//            byte[] imageData = new byte[(int) imageFile.length()];
-//            gmbr.read(imageData);
-//            System.out.println(id);
             if (id != null) {
                 System.out.println("Apakah tombol ditekan");
                 System.out.println(this.isBrowsePressed);
@@ -397,7 +376,6 @@ public class Form_Mobil extends javax.swing.JFrame {
                     sql = "UPDATE mobil SET nama_mobil = '" + nama_mobil + "', nopol = '" + nopol + "',tahun_produksi = '" + tahun_produksi + "',kd_pemilik = '" + pemilik + "',harga_perhari = '" + harga_perhari + "',gambar = '" + pathToInsert + "' WHERE mobil.kd_mobil = '" + kodeMobil.getText() + "'";
                     JOptionPane.showMessageDialog(null, "data berhasil di Ubah");
                 }
-
             } else {
 
                 JFileChooser f = new JFileChooser();
@@ -408,8 +386,8 @@ public class Form_Mobil extends javax.swing.JFrame {
                 if (!directory.exists()) {
                     directory.mkdirs();
                 }
-                File fileawal = null;
-                File fileakhir = null;
+                File fileawal;
+                File fileakhir;
                 String ext = imagePath.substring(imagePath.lastIndexOf('.') + 1);
                 fileawal = new File(imagePath);
                 fileakhir = new File(new_path + "/" + nama_mobil + "." + ext);
@@ -430,9 +408,7 @@ public class Form_Mobil extends javax.swing.JFrame {
             
 
             this.dispose();
-//            this.setVisible(false);
 
-//            this.setVisible(true);
         } catch (Exception e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "data gagal di SIMPAN");
@@ -490,33 +466,35 @@ public class Form_Mobil extends javax.swing.JFrame {
     private void jButton_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_hapusActionPerformed
         // TODO add your handling code here:
         try {
-            if (id != null) {
-                Statement statement = (Statement) DB.getConnection().createStatement();
-                String sql;
-                if (JOptionPane.showConfirmDialog(null, "Yakin ingin menghapus ?", "Pesan", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+//            if (id != null) {
+//                Statement statement = (Statement) DB.getConnection().createStatement();
+//                String sql;
+//                if (JOptionPane.showConfirmDialog(null, "Yakin ingin menghapus ?", "Pesan", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+//
+//                    File imgToDel = new File(this.imagePathOld);
+//                    System.out.println(this.imagePathOld);
+//                    Files.delete(imgToDel.toPath());
+//                    sql = "DELETE FROM mobil where kd_mobil = '" + kodeMobil.getText() + "'";
+//                    java.sql.Connection conn = (Connection) DB.getConnection();
+//                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+//                    pst.execute();
+//                    JOptionPane.showMessageDialog(this, "Data berhasil dihapus");
+//                    mobil.datatable();
+//                    this.dispose(); 
+//
+//                }
 
-                    File imgToDel = new File(this.imagePathOld);
-                    System.out.println(this.imagePathOld);
-                    Files.delete(imgToDel.toPath());
-                    sql = "DELETE FROM mobil where kd_mobil = '" + kodeMobil.getText() + "'";
-                    java.sql.Connection conn = (Connection) DB.getConnection();
-                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-                    pst.execute();
-                    JOptionPane.showMessageDialog(this, "Data berhasil dihapus");
-                    mobil.datatable();
-                    this.dispose();
-
-                }
-
-            } else {
+//            } else {
+                if (JOptionPane.showConfirmDialog(null, "Yakin ingin mengkosongkan seluruh data ?", "Pesan", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                 namaMobil.setText(null);
                 nopolMobil.setText(null);
                 jComboBox_pemilik.setSelectedItem(this);
                 tahun.setText(null);
                 harga.setText(null);
                 JOptionPane.showMessageDialog(this, "Data berhasil dikosongkan");
+                }
 
-            }
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

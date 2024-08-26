@@ -4,11 +4,17 @@
  */
 package Laporan;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.LayoutManager;
+import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import owner.dashboardOwner;
-import rental.Dashboard;
+
+import owner.dashboardOwnerV1;
 
 /**
  *
@@ -16,11 +22,13 @@ import rental.Dashboard;
  */
 public class Menu_Laporan extends javax.swing.JPanel {
 
-    dashboardOwner dashboard = new dashboardOwner();
+    dashboardOwnerV1 dashboard = new dashboardOwnerV1();
 
-    public Menu_Laporan(dashboardOwner dashboard) {
+  
+    public Menu_Laporan(dashboardOwnerV1 dashboard) {
         initComponents();
-        laporan_penyewaan_icon.setSize(450, 242);
+        laporan_penyewaan_icon.setSize(440, 290);
+        laporan_pengembalian_icon.setSize(440, 290);
         // Code adding the component to the parent container - not shown here
         ImageIcon image1 = new ImageIcon(getClass().getResource("/images/laporan_penyewaan_vector.png"));
         Image im1 = image1.getImage();
@@ -31,11 +39,26 @@ public class Menu_Laporan extends javax.swing.JPanel {
         Image im2 = image2.getImage();
         Image myimg2 = im2.getScaledInstance(laporan_penyewaan_icon.getWidth(), laporan_penyewaan_icon.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon newImage2 = new ImageIcon(myimg2);
+        ImageIcon image3 = new ImageIcon(getClass().getResource("/images/laporan_pembatalan_vector.png"));
+        Image im3 = image3.getImage();
+        Image myimg3 = im3.getScaledInstance(laporan_penyewaan_icon.getWidth(), laporan_penyewaan_icon.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon newImage3 = new ImageIcon(myimg3);
+        ImageIcon image4 = new ImageIcon(getClass().getResource("/images/laporan_pengembalian_vector.png"));
+        Image im4 = image4.getImage();
+        Image myimg4 = im4.getScaledInstance(laporan_penyewaan_icon.getWidth(), laporan_penyewaan_icon.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon newImage4 = new ImageIcon(myimg4);
+         ImageIcon image5 = new ImageIcon(getClass().getResource("/images/laporan_keuangan.png"));
+        Image im5 = image5.getImage();
+        Image myimg5 = im5.getScaledInstance(laporan_penyewaan_icon.getWidth(), laporan_penyewaan_icon.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon newImage5 = new ImageIcon(myimg5);
+        laporan_penyewaan_icon.setIcon(newImage);
         laporan_pelanggaran_icon.setIcon(newImage2);
+        laporan_pembatalan_icon.setIcon(newImage3);
+        laporan_pengembalian_icon.setIcon(newImage4);
+        laporan_keuangan_icon.setIcon(newImage5);
 //        laporan_penyewaan_icon.setSize(45, 40);
         this.dashboard = dashboard;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,78 +70,104 @@ public class Menu_Laporan extends javax.swing.JPanel {
 
         jLabel8 = new javax.swing.JLabel();
         laporan_penyewaan_icon = new javax.swing.JLabel();
+        laporan_pembatalan_icon = new javax.swing.JLabel();
         laporan_pelanggaran_icon = new javax.swing.JLabel();
+        laporan_pengembalian_icon = new javax.swing.JLabel();
+        laporan_keuangan_icon = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 50)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(177, 16, 7));
         jLabel8.setText("Menu Laporan");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 6, -1, -1));
 
-        laporan_penyewaan_icon.setBackground(new java.awt.Color(255, 255, 255));
+        laporan_penyewaan_icon.setBackground(new java.awt.Color(255, 102, 51));
         laporan_penyewaan_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        laporan_penyewaan_icon.setOpaque(true);
         laporan_penyewaan_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 laporan_penyewaan_iconMouseClicked(evt);
             }
         });
+        add(laporan_penyewaan_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 440, 290));
 
-        laporan_pelanggaran_icon.setBackground(new java.awt.Color(255, 255, 255));
+        laporan_pembatalan_icon.setBackground(new java.awt.Color(255, 153, 51));
+        laporan_pembatalan_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        laporan_pembatalan_icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                laporan_pembatalan_iconMouseClicked(evt);
+            }
+        });
+        add(laporan_pembatalan_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 150, 430, 290));
+
+        laporan_pelanggaran_icon.setBackground(new java.awt.Color(255, 51, 51));
         laporan_pelanggaran_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        laporan_pelanggaran_icon.setOpaque(true);
         laporan_pelanggaran_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 laporan_pelanggaran_iconMouseClicked(evt);
             }
         });
+        add(laporan_pelanggaran_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 430, 290));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 10, Short.MAX_VALUE)
-                        .addComponent(laporan_penyewaan_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(laporan_pelanggaran_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(laporan_penyewaan_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(laporan_pelanggaran_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(247, Short.MAX_VALUE))
-        );
+        laporan_pengembalian_icon.setBackground(new java.awt.Color(204, 0, 51));
+        laporan_pengembalian_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        laporan_pengembalian_icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                laporan_pengembalian_iconMouseClicked(evt);
+            }
+        });
+        add(laporan_pengembalian_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 490, 450, 280));
+
+        laporan_keuangan_icon.setBackground(new java.awt.Color(204, 0, 255));
+        laporan_keuangan_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        laporan_keuangan_icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                laporan_keuangan_iconMouseClicked(evt);
+            }
+        });
+        add(laporan_keuangan_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 440, 280));
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void laporan_penyewaan_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporan_penyewaan_iconMouseClicked
         dashboard.getJPanelBody().removeAll();
-        dashboard.getJPanelBody().add(new L_sewa());
+        dashboard.getJPanelBody().add(new L_Sewav2());
         dashboard.getJPanelBody().revalidate();
     }//GEN-LAST:event_laporan_penyewaan_iconMouseClicked
 
     private void laporan_pelanggaran_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporan_pelanggaran_iconMouseClicked
+        // TODO add your handling code here:
         dashboard.getJPanelBody().removeAll();
-        dashboard.getJPanelBody().add(new L_pelanggaran());
+        dashboard.getJPanelBody().add(new L_PelanggaranV2());
         dashboard.getJPanelBody().revalidate();
     }//GEN-LAST:event_laporan_pelanggaran_iconMouseClicked
+
+    private void laporan_pembatalan_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporan_pembatalan_iconMouseClicked
+        dashboard.getJPanelBody().removeAll();
+        dashboard.getJPanelBody().add(new L_PembatalanV2());
+        dashboard.getJPanelBody().revalidate();
+    }//GEN-LAST:event_laporan_pembatalan_iconMouseClicked
+
+    private void laporan_pengembalian_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporan_pengembalian_iconMouseClicked
+        dashboard.getJPanelBody().removeAll();
+        dashboard.getJPanelBody().add(new L_PengembalianV2());
+        dashboard.getJPanelBody().revalidate();
+    }//GEN-LAST:event_laporan_pengembalian_iconMouseClicked
+
+    private void laporan_keuangan_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporan_keuangan_iconMouseClicked
+         dashboard.getJPanelBody().removeAll();
+        dashboard.getJPanelBody().add(new L_KeuanganV2());
+        dashboard.getJPanelBody().revalidate();
+    }//GEN-LAST:event_laporan_keuangan_iconMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel laporan_keuangan_icon;
     private javax.swing.JLabel laporan_pelanggaran_icon;
+    private javax.swing.JLabel laporan_pembatalan_icon;
+    private javax.swing.JLabel laporan_pengembalian_icon;
     private javax.swing.JLabel laporan_penyewaan_icon;
     // End of variables declaration//GEN-END:variables
 }

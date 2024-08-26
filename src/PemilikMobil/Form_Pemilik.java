@@ -34,15 +34,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Form_Pemilik extends javax.swing.JFrame {
 
     String id;
-    dataPemilik DataPemilik;
+    dataPemilikv2 DataPemilik;
 
     /**
      * Creates new form Form_Mobil
      */
-    public Form_Pemilik(String id_pemilik, dataPemilik DataPemilik) {
+    public Form_Pemilik(String id_pemilik, dataPemilikv2 DataPemilik) {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setUndecorated(true);
 
 //        Image();
@@ -80,16 +80,16 @@ public class Form_Pemilik extends javax.swing.JFrame {
         noTelp = new javax.swing.JTextField();
         alamat = new javax.swing.JTextField();
         saveMobil = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel_file = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jButton_hapus = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         namaPemilik = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,40 +98,44 @@ public class Form_Pemilik extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         kodePemilik.setBackground(new java.awt.Color(238, 218, 222));
+        kodePemilik.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         kodePemilik.setEnabled(false);
         kodePemilik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kodePemilikActionPerformed(evt);
             }
         });
-        jPanel1.add(kodePemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 400, 30));
+        jPanel1.add(kodePemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 400, 60));
 
         noKtp.setBackground(new java.awt.Color(238, 218, 222));
+        noKtp.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         noKtp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noKtpActionPerformed(evt);
             }
         });
-        jPanel1.add(noKtp, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 400, 30));
+        jPanel1.add(noKtp, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 400, 60));
 
         noTelp.setBackground(new java.awt.Color(238, 218, 222));
+        noTelp.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         noTelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noTelpActionPerformed(evt);
             }
         });
-        jPanel1.add(noTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 400, 30));
+        jPanel1.add(noTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 400, 60));
 
         alamat.setBackground(new java.awt.Color(238, 218, 222));
+        alamat.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         alamat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alamatActionPerformed(evt);
             }
         });
-        jPanel1.add(alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 400, 70));
+        jPanel1.add(alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 570, 400, 110));
 
         saveMobil.setBackground(new java.awt.Color(255, 0, 51));
-        saveMobil.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        saveMobil.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         saveMobil.setForeground(new java.awt.Color(255, 255, 255));
         saveMobil.setText("Save");
         saveMobil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,48 +148,39 @@ public class Form_Pemilik extends javax.swing.JFrame {
                 saveMobilActionPerformed(evt);
             }
         });
-        jPanel1.add(saveMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 120, -1));
+        jPanel1.add(saveMobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 710, 117, 60));
 
-        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel9.setText("Form Pemilik");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel1.setText("KTP");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel2.setText("Alamat");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel3.setText("No Telp");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel5.setText("Nama Pemilik");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, -1, -1));
 
         jLabel_file.setBackground(new java.awt.Color(255, 255, 255));
         jLabel_file.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_file.setText("##");
-        jPanel1.add(jLabel_file, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, -1, 20));
-
-        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel7.setText("Kode Pemilik");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jPanel1.add(jLabel_file, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, -1, 20));
 
         jButton_hapus.setBackground(new java.awt.Color(255, 0, 51));
-        jButton_hapus.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jButton_hapus.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jButton_hapus.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_hapus.setText("Hapus");
+        jButton_hapus.setText("Clear");
         jButton_hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_hapusActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 120, -1));
+        jPanel1.add(jButton_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 710, 117, 60));
 
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -195,27 +190,35 @@ public class Form_Pemilik extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 10, 30, -1));
 
         namaPemilik.setBackground(new java.awt.Color(238, 218, 222));
+        namaPemilik.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         namaPemilik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 namaPemilikActionPerformed(evt);
             }
         });
-        jPanel1.add(namaPemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 400, 30));
+        jPanel1.add(namaPemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 400, 60));
+
+        jLabel10.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel10.setText("Form Owner Mobil");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel11.setText("Kode Pemilik");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
         );
 
         pack();
@@ -295,28 +298,14 @@ public class Form_Pemilik extends javax.swing.JFrame {
     private void jButton_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_hapusActionPerformed
         // TODO add your handling code here:
         try {
-            if (id != null) {
-                Statement statement = (Statement) DB.getConnection().createStatement();
-                String sql;
-                if (JOptionPane.showConfirmDialog(null, "Yakin ingin menghapus ?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-                    sql = "DELETE FROM pemilik_mobil where kd_pemilik = '" + kodePemilik.getText() + "'";
-                    java.sql.Connection conn = (Connection) DB.getConnection();
-                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-                    pst.execute();
-                    JOptionPane.showMessageDialog(this, "Data berhasil dihapus");
-                    DataPemilik.datatable();
-                    this.dispose();
-
-                }
-
-            } else {
+            
                 namaPemilik.setText(null);
                 noKtp.setText(null);
                 noTelp.setText(null);
                 alamat.setText(null);
                 JOptionPane.showMessageDialog(this, "Data berhasil dikosongkan");
 
-            }
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -380,12 +369,12 @@ public class Form_Pemilik extends javax.swing.JFrame {
     private javax.swing.JTextField alamat;
     private javax.swing.JButton jButton_hapus;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_file;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField kodePemilik;

@@ -1,0 +1,88 @@
+kd_detail_sewa,nama_customer,nama_user,nama_mobil,nama_supir,tgl_sewa,jml_hari,subtotal
+DTL0001,Yono Bakri,Sakasatu,Avanza,null,2024-05-17 21:46:00,1,500000
+DTL0007,Yono Bakri,Sakasatu,Avanza,null,2024-05-20 14:01:00,1,500000
+DTL0011,Yono Bakri,Sakasatu,Avanza,null,2024-05-20 14:10:00,1,500000
+DTL0016,Yono Bakri,Sakasatu,Avanza,null,2024-05-20 14:20:00,1,500000
+DTL0021,Yono Bakri,Sakasatu,Avanza,null,2024-05-20 16:14:00,1,500000
+DTL0025,Yono Bakri,Sakasatu,Avanza,null,2024-05-20 23:51:00,1,500000
+DTL0030,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 00:01:00,1,500000
+DTL0031,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 00:01:00,1,500000
+DTL0037,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 00:12:00,1,500000
+DTL0038,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 00:12:00,1,500000
+DTL0044,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 00:41:00,1,500000
+DTL0049,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 00:44:00,1,500000
+DTL0056,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 00:48:00,1,140000
+DTL0057,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 00:52:00,1,500000
+DTL0061,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 00:56:00,1,500000
+DTL0068,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 08:33:00,1,500000
+DTL0071,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 08:39:00,1,500000
+DTL0077,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 09:31:00,1,140000
+DTL0081,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 09:34:00,1,500000
+DTL0086,Yono Bakri,Sakasatu,Avanza,null,2024-05-21 09:40:00,1,500000
+DTL0005,Sipir Dokand,Sakasatu,KijangKuAda,Mulyono,2024-05-20 13:46:00,2,290000
+DTL0009,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-20 14:08:00,1,140000
+DTL0012,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-20 14:10:00,1,140000
+DTL0017,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-20 14:20:00,1,140000
+DTL0026,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-20 23:54:00,1,140000
+DTL0032,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 00:03:00,1,140000
+DTL0039,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 00:15:00,1,140000
+DTL0040,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 00:15:00,1,140000
+DTL0045,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 00:41:00,1,140000
+DTL0050,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 00:44:00,1,140000
+DTL0055,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 00:48:00,1,140000
+DTL0058,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 00:52:00,1,140000
+DTL0062,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 00:56:00,1,500000
+DTL0069,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 08:33:00,1,500000
+DTL0072,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 08:39:00,1,140000
+DTL0076,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 09:31:00,1,140000
+DTL0082,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 09:34:00,1,140000
+DTL0087,Yono Bakri,Sakasatu,KijangKuAda,null,2024-05-21 09:40:00,1,140000
+DTL0002,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-17 21:46:00,2,700000
+DTL0006,Yono Bakri,Sakasatu,Avanza Primad,Gilang WIshal,2024-05-20 13:56:00,2,850000
+DTL0013,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-20 14:15:00,1,350000
+DTL0018,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-20 14:23:00,1,350000
+DTL0024,Gilang Pradana,Sakasatu,Avanza Primad,null,2024-05-20 23:49:00,1,350000
+DTL0027,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-20 23:54:00,1,350000
+DTL0033,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 00:05:00,1,350000
+DTL0034,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 00:05:00,1,350000
+DTL0041,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 00:16:00,1,350000
+DTL0047,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 00:43:00,1,350000
+DTL0053,Yono Bakri,Sakasatu,Avanza Primad,Slamet mukti,2024-05-21 00:48:00,1,550000
+DTL0059,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 00:52:00,1,140000
+DTL0063,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 00:56:00,1,500000
+DTL0066,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 08:31:00,1,350000
+DTL0074,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 08:33:00,1,350000
+DTL0078,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 09:31:00,1,140000
+DTL0083,Yono Bakri,Sakasatu,Avanza Primad,null,2024-05-21 09:36:00,1,350000
+DTL0004,Sipir Dokand,Sakasatu,Avanzasd,null,2024-05-20 13:18:00,2,500000
+DTL0010,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-20 14:08:00,1,250000
+DTL0014,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-20 14:17:00,1,250000
+DTL0019,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-20 16:10:00,1,250000
+DTL0022,Sipir Dokand,Sakasatu,Avanzasd,null,2024-05-20 23:40:00,1,250000
+DTL0028,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-20 23:58:00,1,250000
+DTL0035,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 00:06:00,1,250000
+DTL0042,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 00:18:00,1,250000
+DTL0046,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 00:41:00,1,250000
+DTL0052,Sipir Dokand,Sakasatu,Avanzasd,null,2024-05-21 00:46:00,1,250000
+DTL0054,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 00:48:00,1,250000
+DTL0060,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 00:52:00,1,140000
+DTL0064,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 00:56:00,1,500000
+DTL0067,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 08:31:00,1,250000
+DTL0075,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 08:33:00,1,250000
+DTL0079,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 09:32:00,1,250000
+DTL0084,Yono Bakri,Sakasatu,Avanzasd,null,2024-05-21 09:36:00,1,350000
+DTL0003,Yono Bakri,Sakasatu,asd,Subairi New,2024-05-17 21:46:00,2,268600
+DTL0008,adasd,Sakasatu,asd,null,2024-05-20 14:05:00,1,34300
+DTL0015,Yono Bakri,Sakasatu,asd,null,2024-05-20 14:20:00,1,34300
+DTL0020,Yono Bakri,Sakasatu,asd,null,2024-05-20 16:11:00,1,34300
+DTL0023,Fajar Dramaa,Sakasatu,asd,null,2024-05-20 23:42:00,1,34300
+DTL0029,Yono Bakri,Sakasatu,asd,null,2024-05-20 23:59:00,1,34300
+DTL0036,Yono Bakri,Sakasatu,asd,null,2024-05-21 00:09:00,1,34300
+DTL0043,Yono Bakri,Sakasatu,asd,null,2024-05-21 00:38:00,1,34300
+DTL0048,Yono Bakri,Sakasatu,asd,null,2024-05-21 00:43:00,1,34300
+DTL0051,Sipir Dokand,Sakasatu,asd,null,2024-05-21 00:46:00,1,34300
+DTL0065,Yono Bakri,Sakasatu,asd,null,2024-05-21 00:56:00,1,34300
+DTL0070,Yono Bakri,Sakasatu,asd,null,2024-05-21 08:35:00,1,34300
+DTL0073,Yono Bakri,Sakasatu,asd,null,2024-05-21 08:33:00,1,500000
+DTL0080,Yono Bakri,Sakasatu,asd,null,2024-05-21 09:32:00,1,250000
+DTL0085,Yono Bakri,Sakasatu,asd,null,2024-05-21 09:37:00,1,34300

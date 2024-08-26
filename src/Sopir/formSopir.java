@@ -27,14 +27,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formSopir extends javax.swing.JFrame {
 
     String id;
-    Sopir sopir;
+    Sopirv2 sopir;
     /**
      * Creates new form FormSopir
      */
-    public formSopir(String id_supir,Sopir sopir) {
+    public formSopir(String id_supir,Sopirv2 sopir) {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setUndecorated(true);
         initComponents();
         this.sopir = sopir;
@@ -99,20 +99,20 @@ public class formSopir extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 153, 153), 5, true));
 
-        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
         jLabel9.setText("Form Sopir");
 
-        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel7.setText("Kode Sopir");
 
         kodeSopir.setBackground(new java.awt.Color(238, 218, 222));
-        kodeSopir.setForeground(new java.awt.Color(0, 0, 0));
+        kodeSopir.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         kodeSopir.setEnabled(false);
         kodeSopir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,43 +121,40 @@ public class formSopir extends javax.swing.JFrame {
         });
 
         namaSopir.setBackground(new java.awt.Color(238, 218, 222));
-        namaSopir.setForeground(new java.awt.Color(0, 0, 0));
+        namaSopir.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         namaSopir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 namaSopirActionPerformed(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel8.setText("Nama Sopir");
 
         alamat.setBackground(new java.awt.Color(238, 218, 222));
-        alamat.setForeground(new java.awt.Color(0, 0, 0));
+        alamat.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         alamat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alamatActionPerformed(evt);
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel10.setText("Alamat");
 
         noTelp.setBackground(new java.awt.Color(238, 218, 222));
-        noTelp.setForeground(new java.awt.Color(0, 0, 0));
+        noTelp.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         noTelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noTelpActionPerformed(evt);
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel11.setText("No.Telp");
 
         saveSopir.setBackground(new java.awt.Color(255, 0, 51));
-        saveSopir.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        saveSopir.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         saveSopir.setForeground(new java.awt.Color(255, 255, 255));
         saveSopir.setText("Save");
         saveSopir.addActionListener(new java.awt.event.ActionListener() {
@@ -167,9 +164,9 @@ public class formSopir extends javax.swing.JFrame {
         });
 
         jButton_hapus1.setBackground(new java.awt.Color(255, 0, 51));
-        jButton_hapus1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jButton_hapus1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jButton_hapus1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_hapus1.setText("Hapus");
+        jButton_hapus1.setText("Clear");
         jButton_hapus1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_hapus1ActionPerformed(evt);
@@ -177,15 +174,14 @@ public class formSopir extends javax.swing.JFrame {
         });
 
         noKtp.setBackground(new java.awt.Color(238, 218, 222));
-        noKtp.setForeground(new java.awt.Color(0, 0, 0));
+        noKtp.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         noKtp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noKtpActionPerformed(evt);
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel12.setText("No.Ktp");
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -207,12 +203,12 @@ public class formSopir extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(saveSopir)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButton_hapus1))
+                        .addGap(448, 448, 448)
+                        .addComponent(saveSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton_hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
+                        .addGap(401, 401, 401)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel10)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -222,59 +218,54 @@ public class formSopir extends javax.swing.JFrame {
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel8)
-                                    .addComponent(kodeSopir, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                                    .addComponent(noTelp, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                                     .addComponent(namaSopir)
-                                    .addComponent(noTelp)))
+                                    .addComponent(kodeSopir)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(105, 105, 105)
                                 .addComponent(jLabel9))
-                            .addComponent(noKtp)
-                            .addComponent(alamat))))
-                .addContainerGap(139, Short.MAX_VALUE))
+                            .addComponent(alamat)
+                            .addComponent(noKtp))))
+                .addContainerGap(410, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel9)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(kodeSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(kodeSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namaSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(namaSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(noTelp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(noTelp, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(noKtp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(noKtp, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveSopir)
-                    .addComponent(jButton_hapus1))
-                .addGap(34, 34, 34))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 158, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton_hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saveSopir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(71, 71, 71))))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-170, -240, 1190, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -330,16 +321,13 @@ public class formSopir extends javax.swing.JFrame {
         String no_tlp = noTelp.getText();
         String Alamat = alamat.getText();
         String num = kodeSopir.getText();
-        
-        //        String gambar = gambarMobil.getText();
-        //        String status = statusMobil.getText();
-
         try {
 
             Statement statement = (Statement) DB.getConnection().createStatement();
             String sql;
             if (id != null) {
-                sql = "UPDATE supir SET nama_supir = '" +namaSopir.getText()+"', no_ktp = '"+noKtp.getText()+"',no_telp = '"+noTelp.getText()+"',alamat = '"+alamat.getText()+"' WHERE kd_supir = '"+kodeSopir.getText()+"'";
+                sql = "UPDATE supir SET nama_supir = '" +namaSopir.getText()+"', no_ktp = '"+noKtp.getText()+"'"
+                    + ",no_telp = '"+noTelp.getText()+"',alamat = '"+alamat.getText()+"' WHERE kd_supir = '"+kodeSopir.getText()+"'";
                 JOptionPane.showMessageDialog(null, "data berhasil di Ubah");
             }else{
                 ResultSet res = statement.executeQuery("SELECT genSupirID() AS supirID");
@@ -347,7 +335,8 @@ public class formSopir extends javax.swing.JFrame {
                 if(res.next()){
                     kdSupir = res.getString("supirID");
                 }
-                sql = "insert into supir VALUES('"+kdSupir+"','" + nama_supir + "', '" + no_ktp + "', '" +no_tlp + "','" + Alamat +"','bersedia');"; 
+                sql = "insert into supir VALUES('"+kdSupir+"','" + nama_supir + "', '" + no_ktp + "',"
+                        + " '" +no_tlp + "','" + Alamat +"','bersedia');"; 
                 JOptionPane.showMessageDialog(null, "data berhasil di SIMPAN");
             }
             statement.executeUpdate(sql);
@@ -365,31 +354,21 @@ public class formSopir extends javax.swing.JFrame {
     private void jButton_hapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_hapus1ActionPerformed
         // TODO add your handling code here:
         try {
-            if (id != null) {
-                Statement statement = (Statement) DB.getConnection().createStatement();
-                String sql;
-                if (JOptionPane.showConfirmDialog(null,"Yakin ingin menghapus ?","Pesan",JOptionPane.OK_CANCEL_OPTION)== JOptionPane.OK_OPTION) {
-                     sql = "DELETE FROM supir where kd_supir = '"+kodeSopir.getText()+"'";
-                    java.sql.Connection conn = (Connection) DB.getConnection();
-                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-                    pst.execute();
-                    JOptionPane.showMessageDialog(this,"Data berhasil dihapus");
-                    sopir.datatable();
-                    this.dispose();
-                }
-               
-            } else {
+
+                if (JOptionPane.showConfirmDialog(null, "Yakin ingin mengkosongkan seluruh data ?", "Pesan", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                 namaSopir.setText(null);
+                noTelp.setText(null);
                 noKtp.setText(null);
                 alamat.setText(null);
-                noTelp.setText(null);
-                JOptionPane.showMessageDialog(this,"Data berhasil dikosongkan");
+                JOptionPane.showMessageDialog(this, "Data berhasil dikosongkan");
+                }
 
-            }
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    
     }//GEN-LAST:event_jButton_hapus1ActionPerformed
 
     private void noKtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noKtpActionPerformed

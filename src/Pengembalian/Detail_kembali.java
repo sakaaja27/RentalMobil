@@ -3,31 +3,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Pengembalian;
+
 import java.sql.*;
 import java.util.Date;
 import DB_koneksi.DB;
-import Pembatalan.pembatalan;
+import Pembatalan.Form_Pembatalan;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.Statement;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 /**
  *
  * @author sakab
  */
 public class Detail_kembali extends javax.swing.JPanel {
+
     public String id;
+    public int kekurangan;
+    
     /**
      * Creates new form Detail_kembali
      */
+     String kd_detail_sewa, kd_user, kd_mobil, kd_supir, kd_pengembalian;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    Locale ind = new Locale("in", "ID");
+    NumberFormat curr = NumberFormat.getCurrencyInstance(ind);
+
 
     public Detail_kembali(String id_pengembalian) {
         initComponents();
         this.id = id_pengembalian;
         setupTable();
         getData();
+        genPengembalianID(kd_detail_sewa);
     }
 
     /**
@@ -51,13 +63,9 @@ public class Detail_kembali extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_pengembalian = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel_total = new javax.swing.JLabel();
-        j_kembali = new javax.swing.JLabel();
-        bayar = new javax.swing.JTextField();
-        cetak = new javax.swing.JButton();
-        cetak1 = new javax.swing.JButton();
+        jLabel_kurang = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,21 +78,29 @@ public class Detail_kembali extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel1.setText("Kd Transaksi");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 71, -1, -1));
+
+        kd_tranksaksi.setEditable(false);
         add(kd_tranksaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 72, 147, -1));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel2.setText("Nama Admin");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 100, -1, -1));
+
+        nama_admin.setEditable(false);
         add(nama_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 101, 147, -1));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel3.setText("Nama Penyewa");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 129, -1, -1));
+
+        nama_penyewa.setEditable(false);
         add(nama_penyewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 130, 146, -1));
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel4.setText("No.KTP");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 129, -1, -1));
+
+        no_ktp.setEditable(false);
         add(no_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 130, 133, -1));
 
         jTable_pengembalian.setBackground(new java.awt.Color(238, 218, 222));
@@ -107,104 +123,86 @@ public class Detail_kembali extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable_pengembalian);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 930, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 920, 160));
 
-        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel5.setText("Total");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel5.setText("Total:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel6.setText("Bayar");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel7.setText("Kembali");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, -1, -1));
-
-        jLabel_total.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel_total.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel_total.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel_total.setText("70000");
-        add(jLabel_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
+        jLabel_total.setText("0");
+        add(jLabel_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
 
-        j_kembali.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        j_kembali.setForeground(new java.awt.Color(177, 0, 7));
-        j_kembali.setText("70000");
-        add(j_kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, -1, -1));
+        jLabel_kurang.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel_kurang.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel_kurang.setText("0");
+        add(jLabel_kurang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, -1, -1));
 
-        bayar.setBackground(new java.awt.Color(204, 204, 204));
-        bayar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        bayar.setForeground(new java.awt.Color(204, 0, 0));
-        add(bayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 104, -1));
-
-        cetak.setBackground(new java.awt.Color(255, 0, 51));
-        cetak.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        cetak.setForeground(new java.awt.Color(255, 255, 255));
-        cetak.setText("Cetak");
-        add(cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, -1, -1));
-
-        cetak1.setBackground(new java.awt.Color(255, 0, 51));
-        cetak1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        cetak1.setForeground(new java.awt.Color(255, 255, 255));
-        cetak1.setText("Pelanggaran");
-        cetak1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cetak1MouseClicked(evt);
-            }
-        });
-        add(cetak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel6.setText("Kurang:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cetak1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetak1MouseClicked
-        // TODO add your handling code here:
-        Pelanggaran frm_langgar = new Pelanggaran(null);
-        frm_langgar.setVisible(true);
-    }//GEN-LAST:event_cetak1MouseClicked
+    public void refreshTable() {
+        setupTable();
+        getData();
+    }
 
+    void genPengembalianID(String kd_detail_sewa) {
+        try {
+            Statement statement = (Statement) DB.getConnection().createStatement();
+            ResultSet res;
+            res = statement.executeQuery("SELECT genPengembalianID() AS kembaliID");
+            if (res.next()) {
+                kd_pengembalian= res.getString("kembaliID");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
     private void jTable_pengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_pengembalianMouseClicked
         int baris = jTable_pengembalian.rowAtPoint(evt.getPoint());
-        String id_detail = jTable_pengembalian.getValueAt(baris, 0).toString();   
-        String status = jTable_pengembalian.getValueAt(baris,11).toString();
+        String id_transaksi = kd_tranksaksi.getText();
+        String id_detail = jTable_pengembalian.getValueAt(baris, 0).toString();
+        String status = jTable_pengembalian.getValueAt(baris, 11).toString();
         String id_supir = String.valueOf(jTable_pengembalian.getValueAt(baris, 3));
         String id_mobil = jTable_pengembalian.getValueAt(baris, 1).toString();
-
-        try{
-             Statement statement = (Statement) DB.getConnection().createStatement();
-            ResultSet res = statement.executeQuery("SELECT kd_mobil, kd_supir FROM detail_sewa where kd_detail_sewa='" + id_detail + "'");
-            if (res.next()) { 
-                String id_mobil1 = res.getString("kd_mobil");
-                String id_supir1 = res.getString("kd_supir");
-                  if (status.equals("diproses")) {
-                // munculkan form pembatalan    
-                      Pembatalan.pembatalan frm_batal = new Pembatalan.pembatalan(id_detail);
-                      frm_batal.setVisible(true);
-//              
-
-                System.out.println("Proses");
-            } else if (status.equals("perjalanan")) {
-                int opsi = JOptionPane.showConfirmDialog(null, "Apakah Ada Kerusakan / Pelanggaran ?", "Peringatan", JOptionPane.YES_NO_OPTION);
-                if (opsi == JOptionPane.YES_OPTION) {
-//                Pelanggaran pgr = new Pelanggaran();
-//                pgr.setVisible(true);
-//                    String kdSewa = kd_transaksi.getText();
-//                    Pelanggaran pgr = new Pelanggaran(kdSewa, id_mobil, nama_penyewa.getText());
-//                    pgr.setVisible(true);
-                } else {
-                    String tglKembali = String.valueOf(new Date());
-                    statement.executeUpdate("UPDATE detail_sewa SET tgl_kembali='" + tglKembali + "' , status='selesai' WHERE kd_detail_sewa='" + id_detail + "'");
-                    statement.execute("UPDATE mobil SET status='tersedia' WHERE kd_mobil = '" + id_mobil1 + "'");
-                    if (id_supir != null) {
-                        statement.execute("UPDATE supir SET status='bersedia' WHERE kd_supir = '" + id_supir1 + "'");
+String tgl_pengembalian = sdf.format(new Date());
+        try {
+            Statement statement = (Statement) DB.getConnection().createStatement();
+                if (status.equals("diproses")) {
+                    // munculkan form pembatalan    
+//                    Pembatalan.Form_Pembatalan frm_batal = new Pembatalan.Form_Pembatalan(id_detail, this);
+//                    frm_batal.setVisible(true);
+                } else if (status.equals("perjalanan")) {
+                    int opsi = JOptionPane.showConfirmDialog(null, "Apakah Ada Kerusakan / Pelanggaran ?", "Peringatan", JOptionPane.YES_NO_OPTION);
+                    if (opsi == JOptionPane.YES_OPTION) {
+                        Pelanggaran frm_langgar = new Pelanggaran(id_detail, this);
+                        frm_langgar.setVisible(true);
+                    } else if(opsi == JOptionPane.NO_OPTION){
+                        String tglKembali = sdf.format(new Date());
+                        statement.executeUpdate("INSERT INTO pengembalian VALUES('"+kd_pengembalian+"','"+id_detail+"','"+tgl_pengembalian+"')");
+                        statement.executeUpdate("UPDATE detail_sewa SET tgl_kembali='" + tglKembali + "' , status='selesai' WHERE kd_detail_sewa='" + id_detail + "'");
+                        statement.execute("UPDATE mobil SET status='tersedia' WHERE kd_mobil = '" + id_mobil + "'");
+                        if (id_supir != null) {
+                            statement.execute("UPDATE supir SET status='bersedia' WHERE kd_supir = '" + id_supir + "'");
+                        }
+                        JOptionPane.showMessageDialog(null, "Berhasil Update Data");
+                        refreshTable();
+                        if(kekurangan > 0){
+                            PelunasanDP pelunasan = new PelunasanDP(id_transaksi, this);
+                            pelunasan.setVisible(true);
+                        }
                     }
-                    JOptionPane.showMessageDialog(null, "Berhasil Update Data");
-                }
             }
-            }
-        }catch(Exception x){
+        } catch (Exception x) {
             JOptionPane.showMessageDialog(null, x);
         }
     }//GEN-LAST:event_jTable_pengembalianMouseClicked
 
-    void setupTable(){
+    void setupTable() {
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("Kode Detail");
         tbl.addColumn("Kode Mobil");
@@ -218,17 +216,16 @@ public class Detail_kembali extends javax.swing.JPanel {
         tbl.addColumn("Tgl Kembali");
         tbl.addColumn("Subtotal");
         tbl.addColumn("Status");
-        
+
         jTable_pengembalian.setModel(tbl);
-        try{
+        try {
             Statement statement = (Statement) DB.getConnection().createStatement();
             ResultSet res = statement.executeQuery("SELECT detail_sewa.*, mobil.nama_mobil,mobil.nopol, supir.nama_supir FROM detail_sewa INNER JOIN mobil ON mobil.kd_mobil = detail_sewa.kd_mobil LEFT JOIN supir ON detail_sewa.kd_supir = supir.kd_supir WHERE kd_penyewaan = '"+ id +"';");
-            System.out.println("SELECT detail_sewa.*, mobil.nama_mobil,mobil.nopol, supir.nama_supir FROM detail_sewa INNER JOIN mobil ON mobil.kd_mobil = detail_sewa.kd_mobil INNER JOIN supir ON detail_sewa.kd_supir = supir.kd_supir WHERE kd_penyewaan = '"+ id +"';");
-            while(res.next()){
+            while (res.next()) {
                 String mobil = res.getString("nama_mobil") + " - " + res.getString("nopol");
                 tbl.addRow(new Object[]{
-                    res.getString("kd_detail_sewa"),  
-                    res.getString("kd_mobil"),   
+                    res.getString("kd_detail_sewa"),
+                    res.getString("kd_mobil"),
                     mobil,
                     res.getString("kd_supir"),
                     res.getString("nama_supir"),
@@ -242,44 +239,43 @@ public class Detail_kembali extends javax.swing.JPanel {
                 });
                 jTable_pengembalian.setModel(tbl);
             }
-        }catch(Exception x){
+        } catch (Exception x) {
             System.out.println(x);
             JOptionPane.showMessageDialog(null, x);
         }
     }
-    
-    
-    void getData(){
+
+    void getData() {
         try {
             Statement statement = (Statement) DB.getConnection().createStatement();
-            ResultSet res = statement.executeQuery("SELECT penyewaan.*,user.nama_lengkap AS nm_admin,customer.nama_lengkap AS nm_cust,customer.no_ktp FROM penyewaan INNER JOIN customer on customer.kd_customer = penyewaan.kd_customer INNER JOIN user ON user.kd_user = penyewaan.kd_user where penyewaan.kd_penyewaan = '"+id+"'");
-            
-            while(res.next()){
+            ResultSet res = statement.executeQuery("SELECT * FROM v_pelunasan where kd_penyewaan = '" + id + "'");
+
+            while (res.next()) {
                 kd_tranksaksi.setText(res.getString("kd_penyewaan"));
-                nama_admin.setText(res.getString("nm_admin"));
-                nama_penyewa.setText(res.getString("nm_cust"));
-                no_ktp.setText(res.getString("no_ktp"));
+                nama_admin.setText(res.getString("nama_user"));
+                nama_penyewa.setText(res.getString("nama_customer"));
+                no_ktp.setText(res.getString("ktp_customer"));
+                jLabel_total.setText(curr.format(res.getInt("total_harga")));
+                kekurangan = res.getInt("kurangBayar");
+                String kurang = (Integer.parseInt(res.getString("kurangBayar")) <= 0) ? "Pembayaran Lunas": curr.format(res.getInt("kurangBayar"));
+                jLabel_kurang.setText(kurang);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField bayar;
-    private javax.swing.JButton cetak;
-    private javax.swing.JButton cetak1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel_kurang;
     private javax.swing.JLabel jLabel_total;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_pengembalian;
-    private javax.swing.JLabel j_kembali;
     private javax.swing.JTextField kd_tranksaksi;
     private javax.swing.JTextField nama_admin;
     private javax.swing.JTextField nama_penyewa;

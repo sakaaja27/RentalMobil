@@ -9,13 +9,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import rental.login;
 
 /**
@@ -23,18 +33,25 @@ import rental.login;
  * @author sakab
  */
 public class Sewa extends javax.swing.JPanel {
+
     ArrayList<String> idMobil = new ArrayList<>();
     ArrayList<String> namaMobil = new ArrayList<>();
     ArrayList<String> idSupir = new ArrayList<>();
     ArrayList<String> namaSupir = new ArrayList<>();
     ArrayList<String> idCustomer = new ArrayList<>();
     ArrayList<String> namaCustomer = new ArrayList<>();
-    
-    ArrayList<String> idMobilTable = new ArrayList<>(); 
+
+    ArrayList<String> idMobilTable = new ArrayList<>();
     ArrayList<String> idSupirTable = new ArrayList<>();
     int ttlHarga = 0;
-    
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    int jLabel_hargaSewa = 0;
+    int totalAkhir = 0;
+    int hargaDenganSupir = 0;
+    String jTextField_hargaPerhari = "";
+    int kembalian = 0;
+    SimpleDateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat timeF = new SimpleDateFormat("HH:mm");
+    SimpleDateFormat dateTF = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     public Sewa() {
         initComponents();
@@ -44,22 +61,22 @@ public class Sewa extends javax.swing.JPanel {
         getCustomer();
         getSupir();
         getMobil();
-        
-        combo_mobil.addActionListener(new ActionListener(){
+        combo_mobil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String id = idMobil.get(combo_mobil.getSelectedIndex());
-                try{
+                try {
                     Statement state = DB.getConnection().createStatement();
-                    ResultSet res = state.executeQuery("SELECT harga_perhari FROM mobil WHERE kd_mobil='"+ id+"'");
-                    if(res.next()){
+                    ResultSet res = state.executeQuery("SELECT harga_perhari FROM mobil WHERE kd_mobil='" + id + "'");
+                    if (res.next()) {
                         int hargaPerhari = res.getInt("harga_perhari");
                         int hargaSewa = hargaPerhari * Integer.parseInt(jSpinner_jmlHari.getValue().toString());
-                        jTextField_hargaPerhari.setText(String.valueOf(hargaPerhari));
-                        jLabel_hargaSewa.setText(String.valueOf(hargaSewa));
-                        
+                        jTextField_hargaPerhariInput.setText(formatRupiah(hargaPerhari));
+                        jTextField_hargaPerhari = String.valueOf(hargaPerhari);
+                        jLabel_hargaSewaOnGui.setText(formatRupiah(hargaPerhari));
+                        jLabel_hargaSewa = hargaPerhari;
                     }
-                }catch(Exception x){
+                } catch (Exception x) {
                     JOptionPane.showMessageDialog(null, x);
                 }
             }
@@ -67,40 +84,76 @@ public class Sewa extends javax.swing.JPanel {
         jCombobox_perjalanan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(jCombobox_perjalanan.getSelectedIndex() == 0){
-                    jLabel_hargaSupir.setText("200000");
-                }else if(jCombobox_perjalanan.getSelectedIndex() == 1){
-                    jLabel_hargaSupir.setText("150000");
+                if (jCombobox_perjalanan.getSelectedIndex() == 0) {
+                    jLabel_hargaSupir.setText("200.000");
+                    hargaDenganSupir = 200000;
+                } else if (jCombobox_perjalanan.getSelectedIndex() == 1) {
+                    jLabel_hargaSupir.setText("150.000");
+                    hargaDenganSupir = 150000;
                 }
             }
         });
-        
+
     }
-    
-    void clearForm(){
+
+    public static String formatRupiah(int val) {
+        char[] valInArr = String.valueOf(val).toCharArray();
+        int length = String.valueOf(val).length();
+        char[] reversedValInArr = new char[length];
+        for (int i = 0; i < length; i++) {
+            reversedValInArr[i] = valInArr[length - (i + 1)];
+        }
+        int rupiahFormat = 3;
+        String resultFormattedRupiah = "";
+        if (length > rupiahFormat) {
+            for (int i = length; i > 0; i--) {
+
+                if (length > rupiahFormat) {
+                    if (i % 3 == 0 && i < length) {
+                        resultFormattedRupiah = resultFormattedRupiah.concat(".");
+                        resultFormattedRupiah = resultFormattedRupiah.concat(String.valueOf(reversedValInArr[i - 1]));
+
+                    } else {
+                        resultFormattedRupiah = resultFormattedRupiah.concat(String.valueOf(reversedValInArr[i - 1]));
+                    }
+                } else {
+                    if (i % 3 == 0) {
+                        resultFormattedRupiah = resultFormattedRupiah.concat(".");
+                        resultFormattedRupiah = resultFormattedRupiah.concat(String.valueOf(reversedValInArr[i - 1]));
+                    } else {
+                        resultFormattedRupiah = resultFormattedRupiah.concat(String.valueOf(reversedValInArr[i - 1]));
+                    }
+                }
+            }
+            return resultFormattedRupiah;
+        } else {
+            return String.valueOf(val);
+        }
+    }
+
+    void clearForm() {
         jDateChooser_tglSewa.setDate(new Date());
         jSpinner_jmlHari.setValue(1);
-        jTextField_hargaPerhari.setText("0");
-        
+        jTextField_hargaPerhariInput.setText("0");
+
         supirTidak.setSelected(true);
         jLabel_supir.setVisible(false);
-        jLabel_hargaSewa.setText("0");
+        jLabel_hargaSewaOnGui.setText("0");
         jCombobox_supir.setVisible(false);
-        
+
         jLabel_perjalanan.setVisible(false);
         jCombobox_perjalanan.setVisible(false);
         jLabel_supir1.setVisible(false);
         jLabel24.setVisible(false);
         jLabel_hargaSupir.setVisible(false);
     }
-    
 
-    void clearTable(){
+    void clearTable() {
         DefaultTableModel tbl = (DefaultTableModel) jTable_sewa.getModel();
         tbl.getDataVector().removeAllElements();
         revalidate();
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -112,7 +165,7 @@ public class Sewa extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         combo_mobil = new javax.swing.JComboBox<>();
-        jTextField_hargaPerhari = new javax.swing.JTextField();
+        jTextField_hargaPerhariInput = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jSpinner_jmlHari = new javax.swing.JSpinner();
         jLabel14 = new javax.swing.JLabel();
@@ -125,16 +178,15 @@ public class Sewa extends javax.swing.JPanel {
         jButton_tambah = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_sewa = new javax.swing.JTable();
-        jLabel_hargaSewa = new javax.swing.JLabel();
+        jLabel_hargaSewaOnGui = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel_kembalian = new javax.swing.JLabel();
         jTextField_bayar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
+        jLabel_kembalian = new javax.swing.JLabel();
         jLabel_totalHarga = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jDateChooser_tglSewa = new com.toedter.calendar.JDateChooser();
@@ -144,6 +196,9 @@ public class Sewa extends javax.swing.JPanel {
         jLabel_hargaSupir = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel_perjalanan = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        timeSelectionField_jamSewa = new timeselector.TimeSelectionField();
+        jLabel22 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(243, 245, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -154,12 +209,12 @@ public class Sewa extends javax.swing.JPanel {
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel9.setText("Tanggal Sewa");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 59, -1, -1));
+        jLabel9.setText("Jam Sewa");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, 20));
 
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel10.setText("Nama Customer");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 108, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel11.setText("Harga Perhari");
@@ -174,11 +229,11 @@ public class Sewa extends javax.swing.JPanel {
         combo_mobil.setPreferredSize(new java.awt.Dimension(72, 25));
         add(combo_mobil, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 148, -1));
 
-        jTextField_hargaPerhari.setBackground(new java.awt.Color(238, 218, 222));
-        jTextField_hargaPerhari.setForeground(new java.awt.Color(255, 0, 51));
-        jTextField_hargaPerhari.setEnabled(false);
-        jTextField_hargaPerhari.setPreferredSize(new java.awt.Dimension(64, 25));
-        add(jTextField_hargaPerhari, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 148, -1));
+        jTextField_hargaPerhariInput.setBackground(new java.awt.Color(238, 218, 222));
+        jTextField_hargaPerhariInput.setForeground(new java.awt.Color(255, 0, 51));
+        jTextField_hargaPerhariInput.setEnabled(false);
+        jTextField_hargaPerhariInput.setPreferredSize(new java.awt.Dimension(64, 25));
+        add(jTextField_hargaPerhariInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 148, -1));
 
         jLabel13.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel13.setText("Harga Sewa");
@@ -200,7 +255,7 @@ public class Sewa extends javax.swing.JPanel {
         combo_customer.setBackground(new java.awt.Color(238, 218, 222));
         combo_customer.setForeground(new java.awt.Color(204, 0, 0));
         combo_customer.setPreferredSize(new java.awt.Dimension(72, 25));
-        add(combo_customer, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 106, 148, -1));
+        add(combo_customer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 148, -1));
 
         jLabel15.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel15.setText("Supir");
@@ -273,9 +328,9 @@ public class Sewa extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 238, 907, 134));
 
-        jLabel_hargaSewa.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel_hargaSewa.setText("0");
-        add(jLabel_hargaSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 110, -1));
+        jLabel_hargaSewaOnGui.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        jLabel_hargaSewaOnGui.setText("0");
+        add(jLabel_hargaSewaOnGui, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 110, -1));
 
         jLabel18.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel18.setText("Total");
@@ -292,25 +347,14 @@ public class Sewa extends javax.swing.JPanel {
         jLabel21.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(177, 16, 7));
         jLabel21.setText("Rp.");
-        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 398, -1, -1));
-
-        jLabel_kembalian.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel_kembalian.setForeground(new java.awt.Color(177, 16, 7));
-        jLabel_kembalian.setText("0");
-        add(jLabel_kembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 477, 107, -1));
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, -1, -1));
 
         jTextField_bayar.setBackground(new java.awt.Color(238, 218, 222));
         jTextField_bayar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jTextField_bayar.setForeground(new java.awt.Color(177, 16, 7));
-        jTextField_bayar.setText("0");
-        jTextField_bayar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_bayarActionPerformed(evt);
-            }
-        });
         jTextField_bayar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField_bayarKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField_bayarKeyReleased(evt);
             }
         });
         add(jTextField_bayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 437, 134, -1));
@@ -318,7 +362,7 @@ public class Sewa extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(204, 0, 51));
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cetak Struk");
+        jButton1.setText("Simpan");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -331,15 +375,15 @@ public class Sewa extends javax.swing.JPanel {
         jLabel26.setText("Rp.");
         add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 440, -1, -1));
 
-        jLabel27.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(177, 16, 7));
-        jLabel27.setText("Rp.");
-        add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 477, -1, -1));
+        jLabel_kembalian.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel_kembalian.setForeground(new java.awt.Color(177, 16, 7));
+        jLabel_kembalian.setText("0");
+        add(jLabel_kembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 100, 20));
 
         jLabel_totalHarga.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel_totalHarga.setForeground(new java.awt.Color(177, 16, 7));
         jLabel_totalHarga.setText("0");
-        add(jLabel_totalHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 398, 107, -1));
+        add(jLabel_totalHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 107, -1));
 
         jLabel23.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel23.setText("Rp.");
@@ -374,9 +418,21 @@ public class Sewa extends javax.swing.JPanel {
         jLabel_perjalanan.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel_perjalanan.setText("Perjalanan");
         add(jLabel_perjalanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        jLabel17.setText("Tanggal Sewa");
+        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+
+        timeSelectionField_jamSewa.setBackground(new java.awt.Color(243, 245, 250));
+        add(timeSelectionField_jamSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 130, -1));
+
+        jLabel22.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(177, 16, 7));
+        jLabel22.setText("Rp.");
+        add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 398, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    void setupTable(){
+    void setupTable() {
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("ID Mobil");
         tbl.addColumn("Nama Mobil");
@@ -387,110 +443,121 @@ public class Sewa extends javax.swing.JPanel {
         tbl.addColumn("ID Supir");
         tbl.addColumn("Nama Supir");
         tbl.addColumn("Subtotal");
-        
+
         jTable_sewa.setModel(tbl);
-//        jTable_sewa.getColumnModel().getColumn(0).setMinWidth(0);
-//        jTable_sewa.getColumnModel().getColumn(0).setMaxWidth(0);
-//
-//        jTable_sewa.getColumnModel().getColumn(6).setMinWidth(0);
-//        jTable_sewa.getColumnModel().getColumn(6).setMaxWidth(0);
+        jTable_sewa.getColumnModel().getColumn(0).setMinWidth(0);
+        jTable_sewa.getColumnModel().getColumn(0).setMaxWidth(0);
+
+        jTable_sewa.getColumnModel().getColumn(6).setMinWidth(0);
+        jTable_sewa.getColumnModel().getColumn(6).setMaxWidth(0);
     }
-    
-    void getCustomer(){
-        try{
+
+    void getCustomer() {
+        try {
             Statement state = DB.getConnection().createStatement();
             ResultSet res = state.executeQuery("SELECT kd_customer, nama_lengkap FROM customer");
-            while(res.next()){
+            combo_customer.removeAll();
+            namaCustomer.clear();
+            idCustomer.clear();
+            while (res.next()) {
                 namaCustomer.add(res.getString("nama_lengkap"));
                 idCustomer.add(res.getString("kd_customer"));
             }
             System.out.println(namaCustomer);
             combo_customer.setModel(new DefaultComboBoxModel<>(namaCustomer.toArray(new String[0])));
-        }catch(Exception x){
+        } catch (Exception x) {
             JOptionPane.showMessageDialog(null, x);
         }
     }
 
-    
-    void getMobil(){
-        try{
+    void getMobil() {
+        try {
             Statement state = DB.getConnection().createStatement();
             ResultSet res = state.executeQuery("SELECT kd_mobil, nama_mobil, nopol FROM mobil WHERE status='tersedia'");
-            while(res.next()){
+            combo_mobil.removeAll();
+            namaMobil.clear();
+            idMobil.clear();
+            while (res.next()) {
                 namaMobil.add(res.getString("nama_mobil") + " - " + res.getString("nopol"));
                 idMobil.add(res.getString("kd_mobil"));
             }
             combo_mobil.setModel(new DefaultComboBoxModel<>(namaMobil.toArray(new String[0])));
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    void getSupir(){
-        try{
+
+    void getSupir() {
+        try {
             Statement state = DB.getConnection().createStatement();
             ResultSet res = state.executeQuery("SELECT kd_supir, nama_supir FROM supir WHERE status='bersedia'");
-            while(res.next()){
+            while (res.next()) {
                 namaSupir.add(res.getString("nama_supir"));
                 idSupir.add(res.getString("kd_supir"));
             }
             jCombobox_supir.setModel(new DefaultComboBoxModel<>(namaSupir.toArray(new String[0])));
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    
+
+
     private void jButton_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_tambahActionPerformed
+
         String id_mobil = idMobil.get(combo_mobil.getSelectedIndex());
         String nama_mobil = combo_mobil.getSelectedItem().toString();
-        String harga_perhari = jTextField_hargaPerhari.getText();
+        String harga_perhari = jTextField_hargaPerhari;
         String jml_hari = jSpinner_jmlHari.getValue().toString();
         String id_supir;
         String nama_supir;
-        
-        if(Integer.parseInt(harga_perhari) > 0){
-            if(supirYa.isSelected() && jLabel_hargaSupir.getText().equals("0")){
+        if (Integer.parseInt(harga_perhari) > 0) {
+            if (supirYa.isSelected() && jLabel_hargaSupir.getText().equals("0")) {
                 JOptionPane.showMessageDialog(null, "Pilih Perjalanan Jika Menggunakan Supir");
-            }else{
-            idMobilTable.add(id_mobil);
-            idMobil.remove(id_mobil);
-            namaMobil.remove(nama_mobil);
-            combo_mobil.setModel(new DefaultComboBoxModel<>(namaMobil.toArray(new String[0])));
+            } else {
+                idMobilTable.add(id_mobil);
+                idMobil.remove(id_mobil);
+                namaMobil.remove(nama_mobil);
+                combo_mobil.setModel(new DefaultComboBoxModel<>(namaMobil.toArray(new String[0])));
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime((java.util.Date)jDateChooser_tglSewa.getDate());
-            calendar.add(Calendar.DAY_OF_MONTH, Integer.parseInt(jml_hari));
+                String tglSewa = dateF.format(jDateChooser_tglSewa.getDate()) + " " + timeF.format(timeSelectionField_jamSewa.getSelectedTime());
 
-            String tglSewa = sdf.format((java.util.Date)jDateChooser_tglSewa.getDate());
-            String tglKembali = sdf.format(calendar.getTime());
+                Calendar calendar = Calendar.getInstance();
+                try {
+                    calendar.setTime(dateTF.parse(tglSewa));
+                    calendar.add(Calendar.DAY_OF_MONTH, Integer.parseInt(jml_hari));
 
-            int hargaSupir = 0;
-            if(supirYa.isSelected() && jCombobox_supir.getSelectedItem() != null){
-                id_supir = idSupir.get(jCombobox_supir.getSelectedIndex());
-                nama_supir = jCombobox_supir.getSelectedItem().toString();
-                idSupirTable.add(id_supir);
-                idSupir.remove(id_supir);
-                namaSupir.remove(nama_supir);
-                jCombobox_supir.setModel(new DefaultComboBoxModel<>(namaSupir.toArray(new String[0])));
-                hargaSupir = Integer.parseInt(jLabel_hargaSupir.getText());
-            }else{
-                hargaSupir = 0;
-                id_supir = null;
-                nama_supir = "Tanpa Supir";
-            }
-            int hargaSewa = Integer.parseInt(jLabel_hargaSewa.getText());
-            String subttl = String.valueOf(hargaSewa + hargaSupir);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
-            
-                String[] data = { id_mobil, nama_mobil, harga_perhari, jml_hari, tglSewa,tglKembali, id_supir, nama_supir, subttl};
+                String tglKembali = dateTF.format(calendar.getTime());
+
+                int hargaSupir = 0;
+                if (supirYa.isSelected() && jCombobox_supir.getSelectedItem() != null) {
+                    id_supir = idSupir.get(jCombobox_supir.getSelectedIndex());
+                    nama_supir = jCombobox_supir.getSelectedItem().toString();
+                    idSupirTable.add(id_supir);
+                    idSupir.remove(id_supir);
+                    namaSupir.remove(nama_supir);
+                    jCombobox_supir.setModel(new DefaultComboBoxModel<>(namaSupir.toArray(new String[0])));
+                    hargaSupir = hargaDenganSupir;
+                } else {
+                    hargaSupir = 0;
+                    id_supir = null;
+                    nama_supir = "Tanpa Supir";
+                }
+                int hargaSewa = jLabel_hargaSewa;
+                String subttl = String.valueOf(hargaSewa + hargaSupir);
+
+                String[] data = {id_mobil, nama_mobil, harga_perhari, jml_hari, tglSewa, tglKembali, id_supir, nama_supir, subttl};
                 DefaultTableModel tbl = (DefaultTableModel) jTable_sewa.getModel();
                 tbl.addRow(data);
                 ttlHarga += Integer.parseInt(subttl);
-                jLabel_totalHarga.setText(String.valueOf(ttlHarga));
-                clearForm();    
+                jLabel_totalHarga.setText(formatRupiah(ttlHarga));
+                totalAkhir = ttlHarga;
+                clearForm();
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Pilih Mobil");
         }
     }//GEN-LAST:event_jButton_tambahActionPerformed
@@ -499,14 +566,11 @@ public class Sewa extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCombobox_supirActionPerformed
 
-    private void jTextField_bayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_bayarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_bayarActionPerformed
-
     private void jSpinner_jmlHariStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner_jmlHariStateChanged
         int jml_hari = Integer.parseInt(jSpinner_jmlHari.getValue().toString());
-        int harga_sewa = Integer.parseInt(jTextField_hargaPerhari.getText()) * jml_hari;
-        jLabel_hargaSewa.setText(String.valueOf(harga_sewa));
+        int harga_sewa = Integer.parseInt(jTextField_hargaPerhari) * jml_hari;
+        jLabel_hargaSewaOnGui.setText(formatRupiah(harga_sewa));
+        jLabel_hargaSewa = harga_sewa;
     }//GEN-LAST:event_jSpinner_jmlHariStateChanged
 
     private void supirYaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supirYaActionPerformed
@@ -532,55 +596,47 @@ public class Sewa extends javax.swing.JPanel {
     private void jTable_sewaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_sewaMouseClicked
         int baris = jTable_sewa.rowAtPoint(evt.getPoint());
         DefaultTableModel tbl = (DefaultTableModel) jTable_sewa.getModel();
-        if(tbl.getValueAt(baris, 6) != null ){
+        if (tbl.getValueAt(baris, 6) != null) {
             idSupir.add(tbl.getValueAt(baris, 6).toString());
             namaSupir.add(tbl.getValueAt(baris, 7).toString());
             jCombobox_supir.setModel(new DefaultComboBoxModel<>(namaSupir.toArray(new String[0])));
             idSupirTable.remove(tbl.getValueAt(baris, 6));
         }
-        
+
         idMobil.add(idMobilTable.get(baris));
         namaMobil.add(tbl.getValueAt(baris, 1).toString());
-        
-        int minSubttl = Integer.parseInt(tbl.getValueAt(baris,8).toString());
+
+        int minSubttl = Integer.parseInt(tbl.getValueAt(baris, 8).toString());
         ttlHarga -= minSubttl;
-        jLabel_totalHarga.setText(String.valueOf(ttlHarga));
-        
+        jLabel_totalHarga.setText(formatRupiah(ttlHarga));
+        totalAkhir = ttlHarga;
         combo_mobil.setModel(new DefaultComboBoxModel<>(namaMobil.toArray(new String[0])));
         idMobilTable.remove(baris);
         tbl.removeRow(baris);
     }//GEN-LAST:event_jTable_sewaMouseClicked
 
-    private void jTextField_bayarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_bayarKeyTyped
-        if(!jTextField_bayar.getText().equals("") && Integer.parseInt(jTextField_bayar.getText()) > 0){
-            int totalTransaksi = Integer.parseInt(jLabel_totalHarga.getText());
-            int bayar = Integer.parseInt(jTextField_bayar.getText());
-            int kembali = bayar - totalTransaksi;
-            jLabel_kembalian.setText(String.valueOf(kembali));    
-        }
-    }//GEN-LAST:event_jTextField_bayarKeyTyped
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DefaultTableModel tbl = (DefaultTableModel) jTable_sewa.getModel();
         int rowCount = tbl.getRowCount();
-        if(rowCount > 0){
-            try{
+        if (rowCount > 0) {
+            try {
                 Statement state = DB.getConnection().createStatement();
                 ResultSet res = state.executeQuery("SELECT genSewaID() AS kd_sewa");
-                if(res.next()){
+                if (res.next()) {
                     String kd_sewa = res.getString("kd_sewa");
                     String kdUser = login.idUser;
                     String kdCustomer = idCustomer.get(combo_customer.getSelectedIndex());
-                    String totalHarga = jLabel_totalHarga.getText();
+                    String totalHarga = String.valueOf(totalAkhir);
                     String bayar = jTextField_bayar.getText();
-                    String tglTransaksi = sdf.format(new Date());
-                    
-                    String sql = "INSERT INTO penyewaan VALUES('"+ kd_sewa +"','"+ kdUser +"','"+ kdCustomer +"','"+ totalHarga +"','"+ bayar +"','"+ tglTransaksi +"'); ";
+                    String tglTransaksi = dateTF.format(new Date());
+
+                    String sql = "INSERT INTO penyewaan VALUES('" + kd_sewa + "','" + kdUser + "','" + kdCustomer + "','" + removeDot(totalHarga) + "','" + removeDot(bayar) + "','" + tglTransaksi + "'); ";
+                    System.out.println(sql);
                     state.executeUpdate(sql);
 
-                    for(int i = 0; i < rowCount; i++){
+                    for (int i = 0; i < rowCount; i++) {
                         ResultSet resDtl = state.executeQuery("SELECT genDetailSewaID() AS kd_detail");
-                        if(resDtl.next()){
+                        if (resDtl.next()) {
                             String kd_detail = resDtl.getString("kd_detail");
                             String kd_mobil = tbl.getValueAt(i, 0).toString();
                             String harga_perhari = tbl.getValueAt(i, 2).toString();
@@ -589,21 +645,54 @@ public class Sewa extends javax.swing.JPanel {
                             String tgl_tenggat = tbl.getValueAt(i, 5).toString();
                             String kd_supir = (tbl.getValueAt(i, 6) != null) ? "'" + tbl.getValueAt(i, 6).toString() + "'" : null;
                             String subttl = tbl.getValueAt(i, 8).toString();
-                            state.executeUpdate("INSERT INTO detail_sewa VALUES('"+ kd_detail +"','"+ kd_sewa +"', '"+ kd_mobil +"',IFNULL("+ kd_supir +", NULL),'"+ harga_perhari +"','"+ jml_hari +"','"+ tgl_sewa +"','"+ tgl_tenggat +"', null, '"+subttl +"', 'diproses');");                          
+                            state.executeUpdate("INSERT INTO detail_sewa VALUES('" + kd_detail + "','" + kd_sewa + "', '" + kd_mobil + "',IFNULL(" + kd_supir + ", NULL),'" + harga_perhari + "','" + jml_hari + "','" + tgl_sewa + "','" + tgl_tenggat + "', null, '" + subttl + "', 'diproses');");
                         }
+                    }
+                    try {
+
+                        String report = ("C:\\Users\\Hidayah Arif\\Documents\\NetBeansProjects\\AutoRentals\\src\\Penyewaan\\reportSewa.jrxml");
+                        HashMap hash = new HashMap();
+                        hash.put("kd_penyewaan", kd_sewa);
+                        System.out.println(hash);
+                        JasperReport jas = JasperCompileManager.compileReport(report);
+                        JasperPrint jPrint = JasperFillManager.fillReport(jas, hash, DB.getConnection());
+                        JasperViewer.viewReport(jPrint, false);
+                    } catch (JRException notReport) {
+                        System.out.println("Report salah mas " + notReport);
                     }
                     JOptionPane.showMessageDialog(null, "Berhasil Memasukan Data");
                     clearForm();
                     clearTable();
-                }else{
+                    setupTable();
+                    getCustomer();
+                    getSupir();
+                    getMobil();
+                } else {
                     System.out.println("gagal");
                 }
-            }catch(Exception x){
+            } catch (Exception x) {
                 System.out.println(x);
                 JOptionPane.showMessageDialog(null, x);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+    public static String removeDot(String num) {
+        return num.replace(".", "");
+    }
+    private void jTextField_bayarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_bayarKeyReleased
+//        String bayar = jTextField_bayar.getText();
+        int bayar = Integer.parseInt(removeDot(jTextField_bayar.getText()));
+        jTextField_bayar.setText(formatRupiah(bayar));
+        int totalTransaksi = Integer.parseInt(removeDot(jLabel_totalHarga.getText()));
+        int kembali = bayar - totalTransaksi;
+        if (kembali >= 0) {
+
+            jLabel_kembalian.setText(formatRupiah(kembali));
+        } else {
+            jLabel_kembalian.setText("-" + formatRupiah(kembali * -1));
+            kembalian = kembali;
+        }
+    }//GEN-LAST:event_jTextField_bayarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -623,17 +712,18 @@ public class Sewa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel_hargaSewa;
+    private javax.swing.JLabel jLabel_hargaSewaOnGui;
     private javax.swing.JLabel jLabel_hargaSupir;
     private javax.swing.JLabel jLabel_kembalian;
     private javax.swing.JLabel jLabel_perjalanan;
@@ -644,8 +734,9 @@ public class Sewa extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner_jmlHari;
     private javax.swing.JTable jTable_sewa;
     private javax.swing.JTextField jTextField_bayar;
-    private javax.swing.JTextField jTextField_hargaPerhari;
+    private javax.swing.JTextField jTextField_hargaPerhariInput;
     private javax.swing.JRadioButton supirTidak;
     private javax.swing.JRadioButton supirYa;
+    private timeselector.TimeSelectionField timeSelectionField_jamSewa;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,25 +17,26 @@ import java.util.Date;
  */
 public class Pelanggaran extends javax.swing.JFrame {
 
-    
     /**
      * Creates new form Pelanggaran
      */
     String idDet, idMobil, idSupir;
+    int kekurangan;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    Detail_kembali detail_kembali;
 
-    public Pelanggaran( String kd_detail) {
+    public Pelanggaran(String kd_detail, Detail_kembali detail_kembali) {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setUndecorated(true);
-        
 
         initComponents();
-        
+
         this.idDet = kd_detail;
+        this.detail_kembali = detail_kembali;
         getData();
-        
+
         //ini agar posisi center waktu buka
         this.setLocationRelativeTo(null);
     }
@@ -133,7 +134,7 @@ public class Pelanggaran extends javax.swing.JFrame {
                 jButton_simpanActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, 106, 40));
+        jPanel1.add(jButton_simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 440, 106, 40));
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -167,27 +168,32 @@ public class Pelanggaran extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jButton_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_simpanActionPerformed
-        try{
+        try {
             Statement state = DB.getConnection().createStatement();
             ResultSet res = state.executeQuery("SELECT genPelanggaranID() AS plgID; ");
             String kdPlg = "";
-            if(res.next()){
+            if (res.next()) {
                 kdPlg = res.getString("plgID");
-            }  
+            }
             String idSewa = jTextField_kdSewa.getText();
-            
+
             String gantiRugi = jTextField_gantiRugi.getText();
             String keterangan = jTextField_keterangan.getText();
             String tglPelanggaran = sdf.format(new Date());
-            state.executeUpdate("INSERT INTO pelanggaran VALUES('"+ kdPlg +"', '"+ idSewa +"', '" + idMobil + "'," + idSupir + ", '"+ gantiRugi +"', '"+ keterangan +"','"+ tglPelanggaran +"')");
-            state.executeUpdate("UPDATE detail_sewa SET tgl_kembali='"+ tglPelanggaran +"', status='selesai' WHERE kd_detail_sewa ='"+ idDet +"' ");
-            state.executeUpdate("UPDATE mobil SET status='tersedia' WHERE kd_mobil='"+ idMobil +"' ");
-            if(idSupir != null){
-                state.executeUpdate("UPDATE supir SET status='bersedia' WHERE kd_supir='"+ idSupir +"'");
+            state.executeUpdate("INSERT INTO pelanggaran VALUES('" + kdPlg + "', '" + idSewa + "', '" + idMobil + "'," + idSupir + ", '" + gantiRugi + "', '" + keterangan + "','" + tglPelanggaran + "')");
+            state.executeUpdate("UPDATE detail_sewa SET tgl_kembali='" + tglPelanggaran + "', status='selesai' WHERE kd_detail_sewa ='" + idDet + "' ");
+            state.executeUpdate("UPDATE mobil SET status='tersedia' WHERE kd_mobil='" + idMobil + "' ");
+            if (idSupir != null) {
+                state.executeUpdate("UPDATE supir SET status='bersedia' WHERE kd_supir=" + idSupir + " ");
             }
             JOptionPane.showMessageDialog(null, "Berhasil Memasukan Data");
-
-        }catch(Exception x){
+            if (kekurangan > 0) {
+                PelunasanDP pelunasan = new PelunasanDP(idSewa, this.detail_kembali);
+                pelunasan.setVisible(true);
+            }
+            detail_kembali.refreshTable();
+            dispose();
+        } catch (Exception x) {
             JOptionPane.showMessageDialog(null, x);
         }
     }//GEN-LAST:event_jButton_simpanActionPerformed
@@ -198,27 +204,32 @@ public class Pelanggaran extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     void getData() {
-        try{
+        try {
             Statement state = DB.getConnection().createStatement();
-            ResultSet res = state.executeQuery("SELECT * FROM v_pra_pelanggaran WHERE kd_detail_sewa = '"+ idDet +"'");
-            if(res.next()){
+            ResultSet res = state.executeQuery("SELECT * FROM v_pra_pelanggaran WHERE kd_detail_sewa = '" + idDet + "'");
+            if (res.next()) {
                 jTextField_kdSewa.setText(res.getString("kd_penyewaan"));
                 jTextField_mobil.setText(res.getString("nama_mobil"));
                 jTextField_customer.setText(res.getString("nama_customer"));
                 idMobil = res.getString("kd_mobil");
-                idSupir = (res.getString("kd_supir") != null) ? "'" +  res.getString("kd_supir") + "'" : null;
+                idSupir = (res.getString("kd_supir") != null) ? "'" + res.getString("kd_supir") + "'" : null;
+                ResultSet res1 = state.executeQuery("SELECT kurangBayar FROM v_pelunasan where kd_penyewaan = '" + res.getString("kd_penyewaan") + "'");
+                if (res1.next()) {
+                    kekurangan = res1.getInt("kurangBayar");
+                }
             }
-        }catch(Exception x){
+        } catch (Exception x) {
             JOptionPane.showMessageDialog(rootPane, x);
         }
     }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pelanggaran(null).setVisible(true);
+                new Pelanggaran(null, null).setVisible(true);
             }
         });
     }
@@ -241,5 +252,4 @@ public class Pelanggaran extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_mobil;
     // End of variables declaration//GEN-END:variables
 
-    
 }

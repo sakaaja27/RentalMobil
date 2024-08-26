@@ -4,6 +4,24 @@
  */
 package History;
 
+import Laporan.*;
+import PemilikMobil.*;
+import Sopir.*;
+import ActionButton.TableActionEditor;
+import ActionButton.TableActionEvent;
+import ActionButton.tabelActionRender;
+import DB_koneksi.DB;
+import functions.pop_upTgl_invalid;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sakab
@@ -11,10 +29,11 @@ package History;
 public class History extends javax.swing.JPanel {
 
     /**
-     * Creates new form History
+     * Creates new form Sopir
      */
     public History() {
         initComponents();
+        datatable("","");
     }
 
     /**
@@ -26,19 +45,157 @@ public class History extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jScrollPane1 = new javax.swing.JScrollPane();
+        history = new javax.swing.JTable();
+        btn_reset = new javax.swing.JLabel();
+        btn_search = new javax.swing.JLabel();
+        jTanggal1 = new com.toedter.calendar.JDateChooser();
+        jTanggal2 = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        history.setBackground(new java.awt.Color(238, 218, 222));
+        history.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        history.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nama Sopir", "No.Telp", "Alamat", "Status", "KodeSopir", "Action"
+            }
+        ));
+        history.setRowHeight(40);
+        history.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                historyMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(history);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 1330, -1));
+
+        btn_reset.setFont(new java.awt.Font("Trebuchet MS", 1, 30)); // NOI18N
+        btn_reset.setForeground(new java.awt.Color(255, 255, 255));
+        btn_reset.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_reset.setText("Reset");
+        btn_reset.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_resetMouseClicked(evt);
+            }
+        });
+        add(btn_reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 220, 160, 80));
+
+        btn_search.setFont(new java.awt.Font("Trebuchet MS", 1, 30)); // NOI18N
+        btn_search.setForeground(new java.awt.Color(255, 255, 255));
+        btn_search.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_search.setText("Search");
+        btn_search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_searchMouseClicked(evt);
+            }
+        });
+        add(btn_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 220, 180, 80));
+        add(jTanggal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 320, 50));
+        add(jTanggal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 330, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -60, 1920, 1080));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void historyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyMouseClicked
+        // TODO add your handling code here:
+        //        int baris = jTableSopir.rowAtPoint(evt.getPoint());
+        //        String id_supir = jTableSopir.getValueAt(baris, 0).toString();
+        //
+        //        formSopir frm_add = new formSopir(id_supir,this);
+        //        frm_add.setVisible(true);
+    }//GEN-LAST:event_historyMouseClicked
+
+    private void btn_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_searchMouseClicked
+        // TODO add your handling code here:
+        Date startDate = jTanggal1.getDate();
+        Date endDate = jTanggal2.getDate();
+
+        if (startDate != null && endDate != null && endDate.before(startDate)) {
+            pop_upTgl_invalid pop = new pop_upTgl_invalid();
+            pop.setVisible(true);
+            return;
+        } else {
+       try {
+            history.setModel(new DefaultTableModel(null,new Object[]{"nama_lengkap","kd_user","tgl_log","kegiatan"}));
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String date1 = df.format(jTanggal1.getDate());
+            String date2 = df.format(jTanggal2.getDate());
+            datatable(date1,date2);
+            
+        }
+        catch(Exception e) {
+            
+        }
+        }
+    }//GEN-LAST:event_btn_searchMouseClicked
+
+    private void btn_resetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_resetMouseClicked
+        // TODO add your handling code here:
+        jTanggal1.setDate(null);
+        jTanggal2.setDate(null);
+        datatable("","");
+    }//GEN-LAST:event_btn_resetMouseClicked
+
+    public void datatable(String d1,String d2) {
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("Nama User");
+      tbl.addColumn("Kegiatan");
+        tbl.addColumn("Tgl Log");
+        
+        history.setModel(tbl);
+        
+        PreparedStatement st;
+        ResultSet rs;
+        try {
+            if (d1.equals("") || d2.equals("")) {
+                st = DB.getConnection().prepareStatement("SELECT * from v_log");
+            }
+            else {
+                st = DB.getConnection().prepareStatement("SELECT * from v_log where tgl_log between ? and ? ");
+                st.setString(1, d1);
+                st.setString(2, d2);
+            }
+            
+            rs = st.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) history.getModel();
+            
+            Object[] row;
+            
+            while(rs.next()){
+                tbl.addRow(new Object[]{
+                    rs.getString("nama_lengkap"),
+                    rs.getString("kegiatan"),
+                    rs.getString("tgl_log")
+                   
+                });
+                history.setModel(tbl);
+            }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data tidak ada");
+        }
+        
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btn_reset;
+    private javax.swing.JLabel btn_search;
+    private javax.swing.JTable history;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser jTanggal1;
+    private com.toedter.calendar.JDateChooser jTanggal2;
     // End of variables declaration//GEN-END:variables
 }
